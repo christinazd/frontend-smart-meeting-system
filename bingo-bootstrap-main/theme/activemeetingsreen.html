@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Page Needs -->
+  <meta charset="utf-8">
+  <title>MeetPro - Active Meeting</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Active meeting control panel">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="images/l1.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/lightbox2/css/lightbox.min.css">
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .meeting-container {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .meeting-header {
+      background-color: #2D5F8B;
+      color: white;
+      padding: 20px;
+      border-radius: 5px 5px 0 0;
+    }
+    .meeting-timer {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .attendee-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .attendee-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+    .attendee-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .transcription-panel {
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      padding: 15px;
+      height: 200px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+    .control-btn {
+      margin: 5px;
+      min-width: 120px;
+    }
+    .integration-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #e9ecef;
+      border-radius: 20px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    .action-buttons .btn {
+      margin-bottom: 10px;
+    }
+    .meeting-status {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .status-active {
+      background-color: #28a745;
+    }
+    .status-inactive {
+      background-color: #dc3545;
+    }
+  </style>
+</head>
+<body id="body">
+
+<!-- Start Preloader -->
+<div id="preloader">
+  <div class='preloader'>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<!-- End Preloader -->
+
+<!-- Fixed Navigation -->
+<header class="navigation fixed-top">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light px-0">
+      <a class="navbar-brand logo" href="index.html">
+        <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="140px" width="140px" />
+        <img loading="lazy" class="logo-white" src="images/l1.png" alt="logo" height="140px" width="140px" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav ml-auto text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin.html">Admin Panel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shedule.html">Schedule</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown02" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Booking <i class="tf-ion-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
+              <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
+              <li><a class="dropdown-item active" href="activemeetingscreen.html">Active Meeting Screen</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- End Fixed Navigation -->
+
+<!-- Start Active Meeting Section -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="meeting-container">
+          <!-- Meeting Header -->
+          <div class="meeting-header">
+            <div class="row">
+              <div class="col-md-8">
+                <h2 id="meetingTitle">Quarterly Marketing Strategy Review</h2>
+                <p id="meetingTime"><i class="tf-ion-ios-clock"></i> Wednesday, June 15, 2023 • 10:00 AM - 11:30 AM</p>
+                <p id="meetingLocation"><i class="tf-ion-ios-location"></i> Conference Room A • Floor 3</p>
+              </div>
+              <div class="col-md-4 text-right">
+                <span class="meeting-status status-active"></span>
+                <span id="meetingStatus">Meeting in Progress</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row mt-4">
+            <!-- Left Column - Meeting Info and Controls -->
+            <div class="col-lg-4">
+              <!-- Timer Display -->
+              <div class="meeting-timer">
+                <div id="timer">00:32:45</div>
+                <small>Meeting Duration</small>
+              </div>
+              
+              <!-- Meeting Controls -->
+              <div class="text-center mb-4">
+                <button id="startMeetingBtn" class="btn btn-success control-btn" disabled>
+                  <i class="tf-ion-ios-play"></i> Start Meeting
+                </button>
+                <button id="endMeetingBtn" class="btn btn-danger control-btn">
+                  <i class="tf-ion-ios-stop"></i> End Meeting
+                </button>
+              </div>
+              
+              <!-- Attendees List -->
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h5 class="mb-0">Attendees (6)</h5>
+                </div>
+                <div class="card-body p-0">
+                  <div class="attendee-list">
+                    <div class="attendee-item">
+                      <img src="images/attendees/user1.jpg" alt="Sarah Johnson">
+                      <div>
+                        <strong>Sarah Johnson</strong>
+                        <div class="text-muted small">Host</div>
+                      </div>
+                    </div>
+                    <div class="attendee-item">
+                      <img src="images/attendees/user2.jpg" alt="Michael Chen">
+                      <div>
+                        <strong>Michael Chen</strong>
+                        <div class="text-muted small">Presenter</div>
+                      </div>
+                    </div>
+                    <div class="attendee-item">
+                      <img src="images/attendees/user3.jpg" alt="David Wilson">
+                      <div>
+                        <strong>David Wilson</strong>
+                      </div>
+                    </div>
+                    <div class="attendee-item">
+                      <img src="images/attendees/user4.jpg" alt="Emily Rodriguez">
+                      <div>
+                        <strong>Emily Rodriguez</strong>
+                      </div>
+                    </div>
+                    <div class="attendee-item">
+                      <img src="images/attendees/user5.jpg" alt="Robert Kim">
+                      <div>
+                        <strong>Robert Kim</strong>
+                      </div>
+                    </div>
+                    <div class="attendee-item">
+                      <img src="images/attendees/user6.jpg" alt="Lisa Wong">
+                      <div>
+                        <strong>Lisa Wong</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Invite Participant -->
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h5 class="mb-0">Invite Participant</h5>
+                </div>
+                <div class="card-body">
+                  <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Enter email address">
+                    <div class="input-group-append">
+                      <button class="btn btn-main" type="button">Send</button>
+                    </div>
+                  </div>
+                  <small class="text-muted">Or share this meeting link:</small>
+                  <div class="input-group mt-2">
+                    <input type="text" class="form-control" value="https://meetpro.com/join/abc123" readonly>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="copyLinkBtn">
+                        <i class="tf-ion-ios-copy"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Main Meeting Area -->
+            <div class="col-lg-8">
+              <!-- Video Conference Placeholder -->
+              <div class="card mb-4">
+                <div class="card-body text-center p-4" style="background-color: #333; height: 300px;">
+                  <div class="text-white mt-5">
+                    <i class="tf-ion-ios-videocam" style="font-size: 3rem;"></i>
+                    <h4 class="mt-3">Video Conference Active</h4>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-between">
+                    <button class="btn btn-outline-secondary">
+                      <i class="tf-ion-ios-mic"></i> Mute
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                      <i class="tf-ion-ios-videocam"></i> Stop Video
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                      <i class="tf-ion-ios-share"></i> Share Screen
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Live Transcription -->
+              <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">Live Transcription</h5>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="transcriptionToggle" checked>
+                    <label class="custom-control-label" for="transcriptionToggle"></label>
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                  <div class="transcription-panel" id="transcriptionText">
+                    <p><strong>10:02 AM Sarah:</strong> Okay, let's get started with the quarterly review.</p>
+                    <p><strong>10:03 AM Michael:</strong> I'll begin with the digital marketing performance overview.</p>
+                    <p><strong>10:05 AM Michael:</strong> Our Q2 campaigns resulted in a 32% increase in leads compared to Q1.</p>
+                    <p><strong>10:08 AM David:</strong> That's impressive. Which channels performed best?</p>
+                    <p><strong>10:09 AM Michael:</strong> LinkedIn ads and our email nurture sequences had the highest conversion rates.</p>
+                    <p><strong>10:12 AM Sarah:</strong> Let's discuss how we can replicate this success in Q3.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Action Buttons -->
+              <div class="row action-buttons">
+                <div class="col-md-4">
+                  <button class="btn btn-main btn-block" data-toggle="modal" data-target="#notesModal">
+                    <i class="tf-ion-ios-compose"></i> Take Notes
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-main btn-block">
+                    <i class="tf-ion-ios-share"></i> Share Screen
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-main btn-block" data-toggle="modal" data-target="#inviteModal">
+                    <i class="tf-ion-ios-personadd"></i> Invite Participant
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Integration Links -->
+              <div class="mt-4">
+                <h5>Join via:</h5>
+                <div>
+                  <a href="#" class="integration-badge">
+                    <i class="tf-ion-social-skype"></i> Teams
+                  </a>
+                  <a href="#" class="integration-badge">
+                    <i class="tf-ion-social-windows"></i> Zoom
+                  </a>
+                  <a href="#" class="integration-badge">
+                    <i class="tf-ion-social-google"></i> Meet
+                  </a>
+                  <a href="#" class="integration-badge">
+                    <i class="tf-ion-social-apple"></i> Webex
+                  </a>
+                </div>
+                <div class="input-group mt-3">
+                  <input type="text" class="form-control" value="https://zoom.us/j/123456789?pwd=ABC123" readonly>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="copyZoomBtn">
+                      <i class="tf-ion-ios-copy"></i> Copy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Notes Modal -->
+<div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notesModalLabel">Meeting Minutes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="meetingAgenda">Agenda</label>
+            <textarea class="form-control" id="meetingAgenda" rows="3">1. Q2 Marketing Performance Review
+2. Q3 Marketing Strategy
+3. Budget Allocation
+4. Action Items</textarea>
+          </div>
+          <div class="form-group">
+            <label for="meetingNotes">Notes</label>
+            <textarea class="form-control" id="meetingNotes" rows="10"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="actionItems">Action Items</label>
+            <textarea class="form-control" id="actionItems" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-main">Save Notes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Invite Modal -->
+<div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inviteModalLabel">Invite Participants</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Email Addresses (comma separated)</label>
+          <textarea class="form-control" rows="3" placeholder="Enter email addresses"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Or share this meeting link:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" value="https://meetpro.com/join/abc123" readonly>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                <i class="tf-ion-ios-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-main">Send Invitations</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="bg-one">
+  <div class="top-footer">
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+          <h3>about</h3>
+          <p>Integer posuere erat a ante venenati dapibus posuere velit aliquet. Fusce dapibus, tellus cursus commodo, tortor mauris sed posuere.</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <ul>
+            <li>
+              <h3>Our Services</h3>
+            </li>
+            <li><a href="service.html">Meeting Rooms</a></li>
+            <li><a href="service.html">Video Conferencing</a></li>
+            <li><a href="service.html">Collaboration Tools</a></li>
+            <li><a href="service.html">Analytics</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <ul>
+            <li>
+              <h3>Quick Links</h3>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <ul>
+            <li>
+              <h3>Connect with us Socially</h3>
+            </li>
+            <li><a href="https://www.facebook.com/themefisher/">Facebook</a></li>
+            <li><a href="https://www.twitter.com/themefisher/">Twitter</a></li>
+            <li><a href="https://www.linkedin.com/company/themefisher/">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/themefisher/">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <h5>&copy; Copyright 2023. All rights reserved.</h5>
+    <h6>Design and Developed by <a href="https://themefisher.com/">Themefisher</a></h6>
+  </div>
+</footer>
+
+<!-- Essential Scripts -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<script src="plugins/lightbox2/js/lightbox.min.js"></script>
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/filterizr/jquery.filterizr.min.js"></script>
+<script src="plugins/smooth-scroll/smooth-scroll.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+  // Timer functionality
+  let seconds = 1965; // 32:45 in seconds
+  const timerElement = document.getElementById('timer');
+  
+  function updateTimer() {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    
+    timerElement.textContent = 
+      `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    
+    seconds++;
+  }
+  
+  // Update timer every second
+  const timerInterval = setInterval(updateTimer, 1000);
+  
+  // End Meeting button
+  document.getElementById('endMeetingBtn').addEventListener('click', function() {
+    if (confirm('Are you sure you want to end this meeting?')) {
+      clearInterval(timerInterval);
+      document.getElementById('meetingStatus').textContent = 'Meeting Ended';
+      document.querySelector('.meeting-status').classList.remove('status-active');
+      document.querySelector('.meeting-status').classList.add('status-inactive');
+      this.disabled = true;
+    }
+  });
+  
+  // Copy link buttons
+  document.getElementById('copyLinkBtn').addEventListener('click', function() {
+    const linkInput = this.closest('.input-group-append').previousElementSibling;
+    linkInput.select();
+    document.execCommand('copy');
+    alert('Meeting link copied to clipboard!');
+  });
+  
+  document.getElementById('copyZoomBtn').addEventListener('click', function() {
+    const zoomInput = this.closest('.input-group-append').previousElementSibling;
+    zoomInput.select();
+    document.execCommand('copy');
+    alert('Zoom link copied to clipboard!');
+  });
+  
+  // Transcription toggle
+  document.getElementById('transcriptionToggle').addEventListener('change', function() {
+    const transcriptionPanel = document.getElementById('transcriptionText');
+    if (this.checked) {
+      transcriptionPanel.style.display = 'block';
+    } else {
+      transcriptionPanel.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

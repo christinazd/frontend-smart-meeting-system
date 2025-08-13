@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Page Needs -->
+  <meta charset="utf-8">
+  <title>MeetPro - Room Booking</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Meeting room booking system">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="images/l1.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/lightbox2/css/lightbox.min.css">
+  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .booking-container {
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .room-card {
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .room-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .room-img {
+      height: 200px;
+      object-fit: cover;
+    }
+    .room-features li {
+      margin-bottom: 5px;
+    }
+    .availability-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1;
+    }
+    .time-slot {
+      border: 1px solid #ddd;
+      padding: 8px 15px;
+      margin: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .time-slot:hover {
+      background-color: #f0f0f0;
+    }
+    .time-slot.selected {
+      background-color: #2D5F8B;
+      color: white;
+      border-color: #2D5F8B;
+    }
+    .time-slot.booked {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-color: #f5c6cb;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body id="body">
+
+<!-- Start Preloader -->
+<div id="preloader">
+  <div class='preloader'>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<!-- End Preloader -->
+
+<!-- Fixed Navigation -->
+<header class="navigation fixed-top">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light px-0">
+      <a class="navbar-brand logo" href="index.html">
+        <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="140px" width="140px" />
+        <img loading="lazy" class="logo-white" src="images/l1.png" alt="logo" height="140px" width="140px" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav ml-auto text-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="admin.html">Admin Panel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shedule.html">Schedule</a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown02" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Booking <i class="tf-ion-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
+              <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
+              <li><a class="dropdown-item" href="activemeetingscreen.html">Active Meeting Screen</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- End Fixed Navigation -->
+
+<!-- Start Meeting Room Booking Section -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mb-4">Book a Meeting Room</h2>
+        <p>Find and reserve the perfect space for your next meeting or event.</p>
+      </div>
+    </div>
+    
+    <div class="row mt-5">
+      <div class="col-lg-4">
+        <div class="booking-container">
+          <h4 class="mb-4">Search Filters</h4>
+          <form>
+            <div class="form-group">
+              <label for="bookingDate">Date</label>
+              <input type="date" class="form-control" id="bookingDate" required>
+            </div>
+            <div class="form-group">
+              <label for="startTime">Start Time</label>
+              <input type="time" class="form-control" id="startTime" required>
+            </div>
+            <div class="form-group">
+              <label for="endTime">End Time</label>
+              <input type="time" class="form-control" id="endTime" required>
+            </div>
+            <div class="form-group">
+              <label for="capacity">Capacity</label>
+              <select class="form-control" id="capacity">
+                <option>Any</option>
+                <option>2-4 people</option>
+                <option>5-8 people</option>
+                <option>9-12 people</option>
+                <option>13+ people</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="equipment">Equipment</label>
+              <select class="form-control" id="equipment">
+                <option>Any</option>
+                <option>Projector</option>
+                <option>Whiteboard</option>
+                <option>Video Conferencing</option>
+                <option>Telephone</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-main btn-block">Search Rooms</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="col-lg-8">
+        <div class="row">
+          <!-- Room 1 -->
+          <div class="col-md-6">
+            <div class="card room-card">
+              <span class="badge badge-success availability-badge">Available</span>
+              <img src="images/rooms/room1.jpg" class="card-img-top room-img" alt="Conference Room A">
+              <div class="card-body">
+                <h5 class="card-title">Conference Room A</h5>
+                <p class="card-text">Spacious room with natural lighting, perfect for team meetings.</p>
+                <ul class="room-features">
+                  <li><i class="tf-ion-ios-people"></i> Capacity: 8 people</li>
+                  <li><i class="tf-ion-ios-monitor"></i> Projector available</li>
+                  <li><i class="tf-ion-ios-videocam"></i> Video conferencing</li>
+                </ul>
+                <button class="btn btn-main btn-sm btn-block" data-toggle="modal" data-target="#bookingModal" data-room="Conference Room A">Book Now</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Room 2 -->
+          <div class="col-md-6">
+            <div class="card room-card">
+              <span class="badge badge-warning availability-badge">Limited</span>
+              <img src="images/rooms/room2.jpg" class="card-img-top room-img" alt="Boardroom B">
+              <div class="card-body">
+                <h5 class="card-title">Boardroom B</h5>
+                <p class="card-text">Executive boardroom with premium furnishings and technology.</p>
+                <ul class="room-features">
+                  <li><i class="tf-ion-ios-people"></i> Capacity: 12 people</li>
+                  <li><i class="tf-ion-ios-monitor"></i> Large display screen</li>
+                  <li><i class="tf-ion-ios-telephone"></i> Conference phone</li>
+                </ul>
+                <button class="btn btn-main btn-sm btn-block" data-toggle="modal" data-target="#bookingModal" data-room="Boardroom B">Book Now</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Room 3 -->
+          <div class="col-md-6">
+            <div class="card room-card">
+              <span class="badge badge-danger availability-badge">Booked</span>
+              <img src="images/rooms/room3.jpg" class="card-img-top room-img" alt="Creative Space C">
+              <div class="card-body">
+                <h5 class="card-title">Creative Space C</h5>
+                <p class="card-text">Collaborative workspace with whiteboards and flexible seating.</p>
+                <ul class="room-features">
+                  <li><i class="tf-ion-ios-people"></i> Capacity: 6 people</li>
+                  <li><i class="tf-ion-ios-grid-view"></i> Whiteboard walls</li>
+                  <li><i class="tf-ion-ios-camera"></i> Recording equipment</li>
+                </ul>
+                <button class="btn btn-main btn-sm btn-block" disabled>Currently Booked</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Room 4 -->
+          <div class="col-md-6">
+            <div class="card room-card">
+              <span class="badge badge-success availability-badge">Available</span>
+              <img src="images/rooms/room4.jpg" class="card-img-top room-img" alt="Huddle Room D">
+              <div class="card-body">
+                <h5 class="card-title">Huddle Room D</h5>
+                <p class="card-text">Small meeting space for quick discussions and private calls.</p>
+                <ul class="room-features">
+                  <li><i class="tf-ion-ios-people"></i> Capacity: 4 people</li>
+                  <li><i class="tf-ion-ios-monitor"></i> Small display</li>
+                  <li><i class="tf-ion-ios-telephone"></i> Phone available</li>
+                </ul>
+                <button class="btn btn-main btn-sm btn-block" data-toggle="modal" data-target="#bookingModal" data-room="Huddle Room D">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookingModalLabel">Book Meeting Room</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="selectedRoom">Room</label>
+            <input type="text" class="form-control" id="selectedRoom" readonly>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="modalDate">Date</label>
+                <input type="date" class="form-control" id="modalDate" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Available Time Slots</label>
+                <div class="d-flex flex-wrap">
+                  <div class="time-slot">9:00 AM</div>
+                  <div class="time-slot">10:00 AM</div>
+                  <div class="time-slot booked">11:00 AM</div>
+                  <div class="time-slot">12:00 PM</div>
+                  <div class="time-slot">1:00 PM</div>
+                  <div class="time-slot">2:00 PM</div>
+                  <div class="time-slot">3:00 PM</div>
+                  <div class="time-slot booked">4:00 PM</div>
+                  <div class="time-slot">5:00 PM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startTimeModal">Start Time</label>
+                <input type="time" class="form-control" id="startTimeModal" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endTimeModal">End Time</label>
+                <input type="time" class="form-control" id="endTimeModal" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="meetingTitle">Meeting Title</label>
+            <input type="text" class="form-control" id="meetingTitle" placeholder="Enter meeting title" required>
+          </div>
+          <div class="form-group">
+            <label for="attendees">Attendees (comma separated)</label>
+            <input type="text" class="form-control" id="attendees" placeholder="john@example.com, jane@example.com">
+          </div>
+          <div class="form-group">
+            <label for="specialRequests">Special Requests</label>
+            <textarea class="form-control" id="specialRequests" rows="3" placeholder="Any additional equipment or setup needs"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-main" id="confirmBooking">Confirm Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="bg-one">
+  <div class="top-footer">
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+          <h3>about</h3>
+          <p>Integer posuere erat a ante venenati dapibus posuere velit aliquet. Fusce dapibus, tellus cursus commodo, tortor mauris sed posuere.</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <ul>
+            <li>
+              <h3>Our Services</h3>
+            </li>
+            <li><a href="service.html">Meeting Rooms</a></li>
+            <li><a href="service.html">Event Spaces</a></li>
+            <li><a href="service.html">Video Conferencing</a></li>
+            <li><a href="service.html">Support</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <ul>
+            <li>
+              <h3>Quick Links</h3>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="blog.html">Blogs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <ul>
+            <li>
+              <h3>Connect with us Socially</h3>
+            </li>
+            <li><a href="https://www.facebook.com/themefisher/">Facebook</a></li>
+            <li><a href="https://www.twitter.com/themefisher/">Twitter</a></li>
+            <li><a href="https://www.linkedin.com/company/themefisher/">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/themefisher/">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <h5>&copy; Copyright 2023. All rights reserved.</h5>
+    <h6>Design and Developed by <a href="https://themefisher.com/">Themefisher</a></h6>
+  </div>
+</footer>
+
+<!-- Essential Scripts -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/bootstrap/bootstrap.min.js"></script>
+<script src="plugins/parallax/jquery.parallax-1.1.3.js"></script>
+<script src="plugins/lightbox2/js/lightbox.min.js"></script>
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/filterizr/jquery.filterizr.min.js"></script>
+<script src="plugins/smooth-scroll/smooth-scroll.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+  // Handle room selection in modal
+  $('#bookingModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var roomName = button.data('room');
+    var modal = $(this);
+    modal.find('#selectedRoom').val(roomName);
+    
+    // Set today's date as default
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    modal.find('#modalDate').val(today);
+  });
+  
+  // Handle time slot selection
+  $('.time-slot').not('.booked').click(function() {
+    $('.time-slot').removeClass('selected');
+    $(this).addClass('selected');
+    
+    // Set the time in the time input
+    var timeText = $(this).text();
+    var time24 = convertTo24Hour(timeText);
+    $('#startTimeModal').val(time24);
+    
+    // Calculate end time (1 hour later)
+    var endTime = new Date('1970-01-01T' + time24 + ':00');
+    endTime.setHours(endTime.getHours() + 1);
+    var endTimeString = endTime.toTimeString().substring(0,5);
+    $('#endTimeModal').val(endTimeString);
+  });
+  
+  // Helper function to convert 12-hour to 24-hour time
+  function convertTo24Hour(time12h) {
+    const [time, modifier] = time12h.split(' ');
+    let [hours, minutes] = time.split(':');
+    
+    if (hours === '12') {
+      hours = '00';
+    }
+    
+    if (modifier === 'PM') {
+      hours = parseInt(hours, 10) + 12;
+    }
+    
+    return hours + ':' + minutes;
+  }
+  
+  // Handle booking confirmation
+  $('#confirmBooking').click(function() {
+    // Here you would typically send the data to your backend
+    alert('Booking confirmed! A confirmation has been sent to your email.');
+    $('#bookingModal').modal('hide');
+  });
+</script>
+
+</body>
+</html>
