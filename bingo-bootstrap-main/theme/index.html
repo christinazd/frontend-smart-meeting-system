@@ -81,44 +81,53 @@ Fixed Navigation
 
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav ml-auto text-center">
-          <li class="nav-item dropdown active">
-			<a class="nav-link" href="index.html">Homepage</a>
-            
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="about.html">About Us</a>
-          </li>
-         
-    
-          <li class="nav-item ">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-		  <li class="nav-item ">
-            <a class="nav-link" href="admin.html">Admin Panel</a>
-          </li>
-		   </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="schedule.html">Schedule</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Homepage</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin Panel</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+
+          <!-- Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown02" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Booking <i class="tf-ion-chevron-down"></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
-              
-              
               <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
-			  <li><a class="dropdown-item" href="activemeetingsreen.html">Active Meeting Screen</a></li>
-			
-              
+              <li><a class="dropdown-item" href="activemeetingsreen.html">Active Meeting Screen</a></li>
+            </ul>
+          </li>
+
+          <!-- Login/Logout button -->
+          <li class="nav-item" id="loginLogoutNav">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
         </ul>
       </div>
     </nav>
     <!-- /main nav -->
   </div>
 </header>
-<!--
+
+<script>
+  // Check login status on page load
+  document.addEventListener("DOMContentLoaded", function () {
+    const loginLogoutNav = document.getElementById("loginLogoutNav");
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+    if (isLoggedIn) {
+      loginLogoutNav.innerHTML = `<a class="nav-link" href="#" id="logoutBtn">Logout</a>`;
+      document.getElementById("logoutBtn").addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.removeItem("loggedIn");
+        window.location.href = "index.html"; // Redirect after logout
+      });
+    } else {
+      loginLogoutNav.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
+    }
+  });
+</script>
 End Fixed Navigation
 ==================================== -->
 
