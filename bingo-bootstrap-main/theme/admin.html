@@ -24,52 +24,63 @@
 <header class="navigation fixed-top">
   <div class="container">
     <!-- main nav -->
-    <nav class="navbar navbar-expand-lg navbar-light px-0">
-      <!-- logo -->
-      <a class="navbar-brand logo" href="index.html">
-        <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="120px" width="120"/>
-        
-      </a>
-      <!-- /logo -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <header class="navigation fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light px-0">
+        <a class="navbar-brand logo" href="index.html">
+          <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="60" width="60" />
+       
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navigation">
-        <ul class="navbar-nav ml-auto text-center">
-          <li class="nav-item dropdown active">
-			<a class="nav-link" href="index.html">Homepage</a>
-            
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="about.html">About Us</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="service.html">Services</a>
-          </li>
-    
-          <li class="nav-item ">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-		  <li class="nav-item ">
-            <a class="nav-link" href="admin.html">Admin Panel</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown02" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Booking <i class="tf-ion-chevron-down"></i>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
-              
-              
-              <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
-			  <li><a class="dropdown-item" href="activemeetingscreen.html">Active Meeting Screen</a></li>
-			<li><a class="dropdown-item" href="single-post.html">Meeting Room Booking</a></li>
-              
-        </ul>
-      </div>
-    </nav>
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Homepage</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="admin.html">Admin Panel</a></li>
+            <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown02" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+                Booking <i class="tf-ion-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
+                <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
+                <li><a class="dropdown-item" href="activemeetingsreen.html">Active Meeting Screen</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" id="loginLogoutNav">
+              <a class="nav-link" href="login.html">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==============================
+       LOGIN/LOGOUT NAV STATE
+       ============================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loginLogoutNav = document.getElementById("loginLogoutNav");
+      const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+      if (isLoggedIn) {
+        loginLogoutNav.innerHTML = `<a class="nav-link" href="#" id="logoutBtn">Logout</a>`;
+        document.getElementById("logoutBtn").addEventListener("click", function (e) {
+          e.preventDefault();
+          localStorage.removeItem("loggedIn");
+          window.location.href = "index.html";
+        });
+      } else {
+        loginLogoutNav.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
+      }
+    });
+  </script>
     <!-- /main nav -->
   </div>
 </header>
@@ -84,7 +95,7 @@
     left: 0;
     width: 100%;          /* Full width */
             /* Covers the whole page height */
-    background-color: #006A71; /* Your navbar color */
+    background-color: #078992; /* Your navbar color */
     z-index: -1;    
      
     }
