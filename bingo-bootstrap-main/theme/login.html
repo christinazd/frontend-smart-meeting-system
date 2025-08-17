@@ -429,7 +429,9 @@ added */
             <span class="sweep"></span>
           </button>
 
-          
+           <div id="loginAlert" class="alert alert-danger mt-3 d-none" role="alert">
+    Failed to login.
+  </div>
         </form>
         <!-- Form ends -->
       </div>
@@ -734,5 +736,11 @@ added */
 })();
 
   </script>
+  <!-- Include this at the end of theme/login.html body -->
+<script src="js/auth.js"></script>
+<script src="js/guard.js"></script>
+<!-- Include on pages after guard.js -->
+<script src="js/api.js"></script>
+
 </body>
 </html>

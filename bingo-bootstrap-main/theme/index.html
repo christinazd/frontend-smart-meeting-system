@@ -164,6 +164,8 @@
             <li class="nav-item" id="loginLogoutNav">
               <a class="nav-link" href="login.html">Login</a>
             </li>
+            <li class="nav-item" id="logoutBTn">
+              <a class="nav-link" href="login.html">Logout</a>
           </ul>
         </div>
       </nav>
@@ -688,6 +690,23 @@
         });
       }
     });
+
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+
+  // Example: fetch current user and show name
+  (async () => {
+    try {
+      const res = await authFetch('/user'); // GET /api/user
+      const me = await res.json();          // {id, name, email, ...}
+      const el = document.getElementById('welcomeUser');
+      if (el) el.textContent = me.name || me.email || 'User';
+    } catch (e) {
+      console.error('Failed to load user', e);
+    }
+  })();
   </script>
+  <script src="js/guard.js"></script>
+  <script src="js/api.js"></script>
 </body>
 </html>
