@@ -488,7 +488,7 @@ added */
         const ry = -(dx / rect.width) * limiter;  // rotateY
 
         // subtle transforms
-        portal.style.transform = `rotateX(${rx*0.25}deg) rotateY(${ry*0.25}deg) translateZ(0)`;
+      
         cardWrap.style.transform = `translateZ(120px) rotateX(${rx*0.35}deg) rotateY(${ry*0.35}deg) translateY(-18px)`;
         // parallax image translate smaller
         portalImg.style.transform = `scale(1.02) translate3d(${ry*0.6}px, ${-rx*0.6}px, 0)`;
@@ -496,7 +496,7 @@ added */
 
       // reset on mouse leave
       document.addEventListener('mouseleave', ()=>{
-        portal.style.transform = '';
+        
         cardWrap.style.transform = 'translateZ(120px) translateY(-18px)';
         portalImg.style.transform = '';
       });
