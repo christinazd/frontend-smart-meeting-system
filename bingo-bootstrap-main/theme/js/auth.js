@@ -43,6 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
 
+        // Also set a session cookie mirror for compatibility & mark loggedIn
+try {
+  document.cookie = 'sms_token=' + encodeURIComponent(data.token) + '; path=/;';
+  document.cookie = 'sms_user=' + encodeURIComponent(JSON.stringify(data.user || {})) + '; path=/;';
+} catch (e) { /* ignore cookie failures on restrictive browsers */ }
+localStorage.setItem('loggedIn', 'true');
+
+
         // If role was not present in response for some reason, try to fetch /api/user
         if (!localStorage.getItem("role")) {
           try {

@@ -231,7 +231,7 @@
       <div class="d-flex align-items-center justify-content-between mb-4">
         <div class="dash-top">
           <div class="kicker">Control Center</div>
-          <h2 class="mb-0">Dashboard</h2>
+          <h2 class="mb-0" id="dashboard-title">Dashboard :</h2>
           <div class="muted small" id="dashDate"></div>
         </div>
         <div class="btn-group" role="group" aria-label="Quick Actions">
@@ -691,7 +691,27 @@
     });
 
 
-    document.getElementById('logoutBtn').addEventListener('click', logout);
+   // document.getElementById('logoutBtn').addEventListener('click', logout);
+
+document.getElementById("logoutBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+  // Clear all auth-related localStorage keys and cookies so switching users works reliably
+  ['token','user','role','loggedIn'].forEach(k => localStorage.removeItem(k));
+  // Clear our session cookies (if present)
+  document.cookie = 'sms_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  document.cookie = 'sms_user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  window.location.href = "index.html";
+});
+
+
+
+
+
+
+
+
+
+
 
   // Example: fetch current user and show name
   (async () => {
@@ -708,6 +728,102 @@
   <script src="js/guard.js"></script>
   <script src="js/api.js"></script>
   <script src="js/role-visibility.js"></script>
+
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const h2 = document.getElementById('dashboard-title');
+  const stored = localStorage.getItem('user');
+  if (!h2 || !stored) return;
+
+  try {
+    const u = JSON.parse(stored);
+    if (u && u.name) {
+      const span = document.createElement('span');
+      span.style.marginLeft = '1rem';
+      span.style.borderRight = '2px solid #2575fc';
+      span.style.paddingRight = '5px';
+      span.style.fontWeight = '600';
+      span.style.fontSize = '1.6rem';
+      h2.appendChild(span);
+
+      const fullText = ` Welcome, ${u.name}`;
+      let i = 0;
+      function typeWriter() {
+        if (i < fullText.length) {
+          span.textContent += fullText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        } else {
+          span.style.borderRight = 'none';
+        }
+      }
+      typeWriter();
+    }
+  } catch (e) {
+    console.error("Error loading user:", e);
+  }
+});
+</script>
+
+
+<style>
+.dash-top {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.dash-top .kicker {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #495057;
+}
+
+.dash-top h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2e8789;
+}
+
+.dash-top .muted {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #6c757d;
+  margin-top: 0.5rem;
+}
+</style>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const dashDate = document.getElementById('dashDate');
+  if (dashDate) {
+    function updateTime() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateStr = now.toLocaleDateString('en-US', options);
+      const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      dashDate.textContent = `${dateStr} – ${timeStr}`;
+    }
+    updateTime();
+    setInterval(updateTime, 60000);
+  }
+});
+</script>
+
+
+
+
 
 </body>
 </html>
