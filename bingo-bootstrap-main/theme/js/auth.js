@@ -10,6 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById("loginBtn");
   const API_BASE = "http://127.0.0.1:8000/api";
 
+
+  // --- Minimal Forgot Password UX (non-invasive) ---
+// Uses prompt() to avoid changing UI; you can later replace with modal/form.
+(function () {
+  const API_BASE = "http://127.0.0.1:8000/api"; // adjust if your API runs on another host/port
+
+  const forgotLink = document.getElementById('forgotLink');
+  if (!forgotLink) return;
+
+  forgotLink.addEventListener('click', async function (e) {
+    e.preventDefault();
+    const email = prompt("Enter the email for your account to receive the reset link:");
+    if (!email) return;
+    try {
+      const res = await fetch(API_BASE + '/forgot-password', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Failed to request reset link.');
+      alert(data.message || 'Reset link sent. Check your email.');
+    } catch (err) {
+      console.error('Forgot password error', err);
+      alert(err.message || 'Could not send reset link. Check console for details.');
+    }
+  });
+})();
+
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (loginBtn) {
