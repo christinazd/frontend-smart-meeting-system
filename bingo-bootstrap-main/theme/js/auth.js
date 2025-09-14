@@ -1,5 +1,9 @@
 // File: theme/js/auth.js
 // Handles login POST -> stores token, user and role in localStorage
+// localStorage.setItem('token', data.token);//update
+// localStorage.setItem('user_id', data.user.id);
+// localStorage.setItem('loggedIn', 'true');
+
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   if (!loginForm) return;
@@ -9,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginAlert = document.getElementById("loginAlert");
   const loginBtn = document.getElementById("loginBtn");
   const API_BASE = "http://127.0.0.1:8000/api";
+
 
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -30,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify({ email, password })
       });
+
 
       const data = await res.json().catch(() => ({}));
 
