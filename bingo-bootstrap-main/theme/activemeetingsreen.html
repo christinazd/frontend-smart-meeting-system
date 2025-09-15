@@ -8,7 +8,7 @@
   <meta name="description" content="Active meeting control panel">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="author" content="Themefisher">
-  
+
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="images/l1.png" />
 
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="plugins/animate/animate.css">
   <link rel="stylesheet" href="plugins/slick/slick.css">
   <link rel="stylesheet" href="css/style.css">
-  
+
   <style>
     .meeting-container {
       background-color: #f9f9f9;
@@ -103,7 +103,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; 
+  width: 100%;
   background-color: #078992;
   z-index: -1;
 }
@@ -168,6 +168,7 @@
        LOGIN/LOGOUT NAV STATE
        ============================== -->
   <script>
+
     document.addEventListener("DOMContentLoaded", function () {
       const loginLogoutNav = document.getElementById("loginLogoutNav");
       const isLoggedIn = localStorage.getItem("loggedIn") === "true";
@@ -215,7 +216,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="row mt-4">
             <!-- Left Column - Meeting Info and Controls -->
             <div class="col-lg-4">
@@ -224,7 +225,7 @@
                 <div id="timer">00:32:45</div>
                 <small>Meeting Duration</small>
               </div>
-              
+
               <!-- Meeting Controls -->
               <div class="text-center mb-4">
                 <button id="startMeetingBtn" class="btn btn-success control-btn" disabled>
@@ -234,7 +235,7 @@
                   <i class="tf-ion-ios-stop"></i> End Meeting
                 </button>
               </div>
-              
+
               <!-- Attendees List -->
               <div class="card mb-4">
                 <div class="card-header">
@@ -283,7 +284,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- Invite Participant -->
               <div class="card mb-4">
                 <div class="card-header">
@@ -308,7 +309,7 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Right Column - Main Meeting Area -->
             <div class="col-lg-8">
               <!-- Video Conference Placeholder -->
@@ -333,7 +334,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- Live Transcription -->
               <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -354,7 +355,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- Action Buttons -->
               <div class="row action-buttons">
                 <div class="col-md-4">
@@ -373,7 +374,7 @@
                   </button>
                 </div>
               </div>
-              
+
               <!-- Integration Links -->
               <div class="mt-4">
                 <h5>Join via:</h5>
@@ -633,21 +634,21 @@
   // Timer functionality
   let seconds = 1965; // 32:45 in seconds
   const timerElement = document.getElementById('timer');
-  
+
   function updateTimer() {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    
-    timerElement.textContent = 
+
+    timerElement.textContent =
       `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    
+
     seconds++;
   }
-  
+
   // Update timer every second
   const timerInterval = setInterval(updateTimer, 1000);
-  
+
   // End Meeting button
   document.getElementById('endMeetingBtn').addEventListener('click', function() {
     if (confirm('Are you sure you want to end this meeting?')) {
@@ -658,7 +659,7 @@
       this.disabled = true;
     }
   });
-  
+
   // Copy link buttons
   document.getElementById('copyLinkBtn').addEventListener('click', function() {
     const linkInput = this.closest('.input-group-append').previousElementSibling;
@@ -666,14 +667,14 @@
     document.execCommand('copy');
     alert('Meeting link copied to clipboard!');
   });
-  
+
   document.getElementById('copyZoomBtn').addEventListener('click', function() {
     const zoomInput = this.closest('.input-group-append').previousElementSibling;
     zoomInput.select();
     document.execCommand('copy');
     alert('Zoom link copied to clipboard!');
   });
-  
+
   // Transcription toggle
   document.getElementById('transcriptionToggle').addEventListener('change', function() {
     const transcriptionPanel = document.getElementById('transcriptionText');
@@ -684,6 +685,7 @@
     }
   });
 </script>
+
  <script src="js/role-visibility.js"></script>
 
 </body>

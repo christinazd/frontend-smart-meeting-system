@@ -29,7 +29,7 @@
       <nav class="navbar navbar-expand-lg navbar-light px-0">
         <a class="navbar-brand logo" href="index.html">
           <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="60" width="60" />
-       
+
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,8 +97,8 @@
     width: 100%;          /* Full width */
             /* Covers the whole page height */
     background-color: #078992; /* Your navbar color */
-    z-index: -1;    
-     
+    z-index: -1;
+
     }
     .card {
       border-radius: 12px;
@@ -451,7 +451,7 @@
     // Add event listeners for the modal triggers
     document.addEventListener("DOMContentLoaded", function() {
       // User form submission
-    
+
      const userForm= document.getElementById('formAddUser')
      userForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -472,8 +472,8 @@
           method:'POST',
           body:payload,
             headers: {
-           'Authorization':`Bearer ${token}`, 
-          },  
+           'Authorization':`Bearer ${token}`,
+          },
         })
         .then(res => res.json())
        .then(data => {
@@ -489,12 +489,12 @@
     });
 
       });
-      
+
       // Room form submission
         // ... (existing code for User form submission) ...
         document.getElementById('formAddRoom').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const token = localStorage.getItem('token');
             if (!token) {
                 alert("Authentication error. Please log in again.");
@@ -511,7 +511,7 @@
                     conference: document.getElementById('featureConference').checked,
                     wifi: document.getElementById('featureWifi').checked,
                 },
-               
+
             };
 
             fetch('http://127.0.0.1:8000/api/rooms', {
