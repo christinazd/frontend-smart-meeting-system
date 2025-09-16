@@ -5,31 +5,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
   <title>Admin Panel — Smart Meeting System</title>
 
-  <!-- Bootstrap 4 -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-  <!-- Theme main CSS (keep your theme styling) -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Admin extra styles -->
   <link rel="stylesheet" href="css/admin.css">
 
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 </head>
 <body class="bg-white">
 <header class="navigation fixed-top">
   <div class="container">
-    <!-- main nav -->
-      <header class="navigation fixed-top">
+    <header class="navigation fixed-top">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light px-0">
         <a class="navbar-brand logo" href="index.html">
           <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="60" width="60" />
-       
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,9 +55,6 @@
     </div>
   </header>
 
-  <!-- ==============================
-       LOGIN/LOGOUT NAV STATE
-       ============================== -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const loginLogoutNav = document.getElementById("loginLogoutNav");
@@ -81,8 +71,7 @@
       }
     });
   </script>
-    <!-- /main nav -->
-  </div>
+    </div>
 </header>
 <style>
     body {
@@ -107,35 +96,20 @@
       background-color: #f8f9fa;
       font-weight: bold;
     }
+    .button-alter{
+      display:flex;
+      justify-content: center;
+      gap:5px;
+      flex-wrap: nowrap;
+    }
   </style>
-  <!-- NAVBAR_PLACEHOLDER
-       Replace this comment with the exact <nav>...</nav> from your theme/index.html
-       Example minimal replacement (you should paste your theme's actual nav instead):
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background:linear-gradient(90deg,#000,#111);">
-    <a class="navbar-brand" href="index.html">Smart Meeting System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item admin-only"><a class="nav-link" href="admin.html">Admin Panel</a></li>
-        <li class="nav-item"><a class="nav-link" href="meetings.html">Meetings</a></li>
-        <li class="nav-item"><a class="nav-link" href="rooms.html">Rooms</a></li>
-      </ul>
-    </div>
-  </nav>
-  -->
-
-  <!-- Page content -->
-   <style>
+  <style>
   body {
     background-color: #ffffff;
     padding-top: 80px; /* ✅ Added spacing so content doesn't overlap navbar */
   }
 </style>
   <main class="container py-4">
-    <!-- Header -->
     <div class="d-flex align-items-center justify-content-between mb-4">
       <div>
         <h1 class="mb-1">Admin Panel</h1>
@@ -147,7 +121,6 @@
       </div>
     </div>
 
-    <!-- Stats row -->
     <div class="row mb-4">
       <div class="col-md-3 mb-3">
         <div class="stat-card glass p-3">
@@ -198,11 +171,8 @@
       </div>
     </div>
 
-    <!-- Main panels -->
     <div class="row">
-      <!-- Left column -->
       <div class="col-lg-8">
-        <!-- Quick Actions -->
         <div class="card card-quiet mb-4">
           <div class="card-body d-flex flex-wrap align-items-center">
             <button id="btn-schedule" class="btn btn-outline-primary qa-btn mr-3 mb-2"><i class="fas fa-calendar-plus"></i> Schedule Meeting</button>
@@ -217,7 +187,6 @@
           </div>
         </div>
 
-        <!-- Room Availability (table grid) -->
         <div class="card card-quiet mb-4">
           <div class="card-header d-flex align-items-center justify-content-between">
             <h5 class="mb-0">Room Availability (Today)</h5>
@@ -244,7 +213,32 @@
           </div>
         </div>
 
-        <!-- Room Management table -->
+        <div class="card card-quiet mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">User Management</h5>
+                <button id="openAddUser" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalAddUser">
+                    <i class="fas fa-plus"></i> Add User
+                </button>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userListTable">
+                            <tr><td colspan="4" class="text-center text-muted">Loading users...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <div class="card card-quiet mb-4">
           <div class="card-header d-flex align-items-center justify-content-between">
             <h5 class="mb-0">Room Management</h5>
@@ -256,9 +250,9 @@
                 <thead class="thead-light">
                   <tr>
                     <th>Room Name</th>
-                    <th>Status</th>
+                    <th>Location</th>
                     <th>Capacity</th>
-                    <th>Equipment</th>
+                    <th>Features</th>
                     <th class="text-right">Actions</th>
                   </tr>
                 </thead>
@@ -268,16 +262,14 @@
           </div>
         </div>
       </div>
+      
 
-      <!-- Right column -->
       <div class="col-lg-4">
-        <!-- System Alerts -->
         <div class="card card-quiet mb-4">
           <div class="card-header"><h6 class="mb-0">System Alerts</h6></div>
           <div class="card-body" id="alertsList"></div>
         </div>
 
-        <!-- Analytics charts -->
         <div class="card card-quiet mb-4">
           <div class="card-header"><h6 class="mb-0">Room Usage Analytics</h6></div>
           <div class="card-body">
@@ -285,7 +277,6 @@
           </div>
         </div>
 
-        <!-- Recent Activity -->
         <div class="card card-quiet">
           <div class="card-header"><h6 class="mb-0">Recent Activity</h6></div>
           <div class="card-body" id="activityList"></div>
@@ -294,8 +285,6 @@
     </div>
   </main>
 
-  <!-- Modals -->
-  <!-- Add/Edit Room Modal -->
   <div class="modal fade" id="modalRoom" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
       <form id="formRoom" class="modal-content">
@@ -311,17 +300,10 @@
               <label>Capacity</label>
               <input id="roomCapacity" type="number" min="1" class="form-control" required>
             </div>
-            <div class="form-group col-sm-6">
-              <label>Status</label>
-              <select id="roomStatus" class="form-control">
-                <option value="available">Available</option>
-                <option value="booked">Booked</option>
-                <option value="maintenance">Maintenance</option>
-              </select>
-            </div>
+            
           </div>
           <div class="form-group">
-            <label>Equipment</label>
+            <label>Features</label>
             <div class="form-check">
               <input id="eqMic" class="form-check-input" type="checkbox">
               <label class="form-check-label" for="eqMic">Microphone</label>
@@ -337,14 +319,12 @@
     </div>
   </div>
 
-  <!-- Schedule modal -->
   <div class="modal fade" id="modalSchedule" tabindex="-1"><div class="modal-dialog"><form id="formSchedule" class="modal-content"><div class="modal-header"><h5 class="modal-title">Schedule Meeting</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body">
     <div class="form-group"><label>Title</label><input id="schedTitle" class="form-control" required></div>
     <div class="form-row"><div class="form-group col-sm-6"><label>Date</label><input id="schedDate" type="date" class="form-control" required></div><div class="form-group col-sm-6"><label>Time</label><input id="schedTime" type="time" class="form-control" required></div></div>
     <div class="form-group"><label>Room</label><select id="schedRoom" class="form-control"></select></div>
   </div><div class="modal-footer"><button class="btn btn-primary" type="submit">Save</button><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button></div></form></div></div>
 
-  <!-- Add User modal -->
   <div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
       <form id="formAddUser" class="modal-content">
@@ -385,7 +365,6 @@
     </div>
   </div>
 
-  <!-- Add Room modal -->
   <div class="modal fade" id="modalAddRoom" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
       <form id="formAddRoom" class="modal-content">
@@ -436,109 +415,504 @@
     </div>
   </div>
 
-  <!-- JS libs -->
+  <div class="modal fade" id="modalUpdateUser" tabindex="-1" role="dialog" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <form id="formUpdateUser" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateUserModalLabel">Update User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="userUpdateId" name="id" />
+          <div class="form-group">
+            <label for="userUpdateName">Full Name</label>
+            <input type="text" class="form-control" id="userUpdateName" placeholder="Enter full name" required>
+          </div>
+          <div class="form-group">
+            <label for="userUpdateEmail">Email address</label>
+            <input type="email" class="form-control" id="userUpdateEmail" placeholder="Enter email" required>
+          </div>
+          <div class="form-group">
+            <label for="userUpdateRole">Role</label>
+            <select class="form-control" id="userUpdateRole" required>
+              <option value="">Select role</option>
+              <option value="admin">Admin</option>
+              <option value="employee">Employee</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+</div>
+
+<div class="modal fade" id="modalUpdateRoom" tabindex="-1" role="dialog" aria-labelledby="updateRoomModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <form id="formUpdateRoom" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateRoomModalLabel">Update Room</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="roomUpdateId" name="id" />
+                <div class="form-group">
+                    <label for="roomUpdateName">Room Name</label>
+                    <input type="text" class="form-control" id="roomUpdateName" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomUpdateLocation">Location</label>
+                    <input type="text" class="form-control" id="roomUpdateLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomUpdateCapacity">Capacity</label>
+                    <input type="number" class="form-control" id="roomUpdateCapacity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Features</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="featureUpdateProjector">
+                        <label class="form-check-label" for="featureUpdateProjector">Projector</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="featureUpdateWhiteboard">
+                        <label class="form-check-label" for="featureUpdateWhiteboard">Whiteboard</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="featureUpdateConference">
+                        <label class="form-check-label" for="featureUpdateConference">Video Conferencing</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="featureUpdateWifi">
+                        <label class="form-check-label" for="featureUpdateWifi">High-speed WiFi</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Role visibility & admin logic -->
   <script src="js/role-visibility.js"></script>
   <script src="js/sms-admin-premium.js"></script>
    <script src="js/role-visibility.js"></script>
-
-  <script>
-    // Add event listeners for the modal triggers
+     <script>
     document.addEventListener("DOMContentLoaded", function() {
       // User form submission
-    
-     const userForm= document.getElementById('formAddUser')
-     userForm.addEventListener('submit', function(e) {
+      const userForm= document.getElementById('formAddUser');
+      userForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         const token = localStorage.getItem('token');
         if (!token) {
           alert("Authentication error. Please log in again.");
           return;
-       }
+        }
 
-        const payload=new FormData(this);
+        const payload = new FormData(this);
         payload.set('name', document.getElementById('userName').value);
         payload.set('email', document.getElementById('userEmail').value);
         payload.set('password', document.getElementById('userPassword').value);
         payload.set('role', document.getElementById('userRole').value);
 
-        fetch('http://127.0.0.1:8000/api/users',{
-          method:'POST',
-          body:payload,
-            headers: {
-           'Authorization':`Bearer ${token}`, 
+        fetch('http://127.0.0.1:8000/api/users', {
+          method: 'POST',
+          body: payload,
+          headers: {
+            'Authorization': `Bearer ${token}`, 
           },  
         })
         .then(res => res.json())
-       .then(data => {
-        console.log(data);
-        alert('User added successfully!');
-        $('#modalAddUser').modal('hide');
+        .then(data => {
+          console.log(data);
+          alert('User added successfully!');
+          $('#modalAddUser').modal('hide');
+          this.reset();
+          fetchUsers();
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Failed to add user. Check the console for details.');
+        });
+      });
+     
+      // Room form submission
+    document.getElementById('formAddRoom').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert("Authentication error. Please log in again.");
+        return;
+    }
+
+    const payload = {
+        name: document.getElementById('roomNameInput').value,
+        location: document.getElementById('roomLocation').value,
+        capacity: document.getElementById('roomCapacityInput').value,
+        features: {
+            'Projector': document.getElementById('featureProjector').checked,
+            'Whiteboard': document.getElementById('featureWhiteboard').checked,
+            'Video Conferencing': document.getElementById('featureConference').checked,
+            'High-speed WiFi': document.getElementById('featureWifi').checked,
+        },
+    };
+
+    fetch('http://127.0.0.1:8000/api/rooms', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(res => {
+        if (!res.ok) {
+            return res.json().then(errorData => {
+                throw new Error(errorData.message || 'Failed to add room.');
+            });
+        }
+        return res.json();
+    })
+    .then(data => {
+        alert('Room added successfully!');
+        $('#modalAddRoom').modal('hide');
         this.reset();
+        fetchRooms();
     })
     .catch(err => {
-        // Handle error
-        console.error(err);
-        alert('Failed to add user. Check the console for details.');
+        console.error('Error adding room:', err);
+        alert('Failed to add room. Check the console for details.');
     });
+});
+    });
+  </script>
 
-      });
-      
-      // Room form submission
-        // ... (existing code for User form submission) ...
-        document.getElementById('formAddRoom').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert("Authentication error. Please log in again.");
+  <script>
+    const API_BASE = "http://127.0.0.1:8000/api";
+    const userListTable = document.getElementById('userListTable');
+    const roomsList = document.getElementById('roomsList');
+
+
+    // --- USER MANAGEMENT FUNCTIONS ---
+    async function fetchUsers() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            userListTable.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Authentication token not found. Please log in.</td></tr>';
+            return;
+        }
+
+        try {
+            const response = await fetch(API_BASE + '/users', {
+                headers: { 
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ message: 'No JSON response' }));
+                userListTable.innerHTML = `<tr><td colspan="4" class="text-center text-danger">Failed to load users: ${errorData.message}</td></tr>`;
                 return;
             }
 
-            const payload = {
-                name: document.getElementById('roomNameInput').value,
-                location: document.getElementById('roomLocation').value,
-                capacity: document.getElementById('roomCapacityInput').value,
-                features: {
-                    projector: document.getElementById('featureProjector').checked,
-                    whiteboard: document.getElementById('featureWhiteboard').checked,
-                    conference: document.getElementById('featureConference').checked,
-                    wifi: document.getElementById('featureWifi').checked,
-                },
-               
-            };
+            const data = await response.json();
+            userListTable.innerHTML = '';
+            
+            if (!data || !data.data || !Array.isArray(data.data)) {
+                 userListTable.innerHTML = `<tr><td colspan="4" class="text-center text-danger">Unexpected data format from API.</td></tr>`;
+                 return;
+            }
 
-            fetch('http://127.0.0.1:8000/api/rooms', {
-                method: 'POST',
+            data.data.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td class="text-right">
+                        <button class="btn btn-sm btn-info edit-btn" data-id="${user.id}"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger delete-btn" data-id="${user.id}"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                `;
+                userListTable.appendChild(row);
+            });
+        } catch (error) {
+            console.error('An error occurred during the fetch operation:', error);
+            userListTable.innerHTML = '<tr><td colspan="4" class="text-center text-danger">A network error occurred. Is the server running?</td></tr>';
+        }
+    }
+    
+    async function deleteUser(userId) {
+        const token = localStorage.getItem('token');
+        if (!confirm('Are you sure you want to delete this user?')) return;
+        
+        try {
+            const response = await fetch(`${API_BASE}/users/${userId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (response.ok) {
+                alert('User deleted successfully!');
+                fetchUsers();
+            } else {
+                throw new Error('Failed to delete user.');
+            }
+        } catch (error) {
+            console.error('Delete error:', error);
+            alert('Failed to delete user.');
+        }
+    }
+
+    userListTable.addEventListener('click', async (e) => {
+        if (e.target.closest('.delete-btn')) {
+            const userId = e.target.closest('.delete-btn').getAttribute('data-id');
+            deleteUser(userId);
+        } else if (e.target.closest('.edit-btn')) {
+            const userId = e.target.closest('.edit-btn').getAttribute('data-id');
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch(`${API_BASE}/users/${userId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user data for update.');
+                }
+                const userData = await response.json();
+                
+                document.getElementById('userUpdateId').value = userData.data.id;
+                document.getElementById('userUpdateName').value = userData.data.name;
+                document.getElementById('userUpdateEmail').value = userData.data.email;
+                document.getElementById('userUpdateRole').value = userData.data.role;
+                $('#modalUpdateUser').modal('show');
+            } catch (error) {
+                console.error('Failed to load user data for update:', error);
+                alert('Failed to load user data. Check console for details.');
+            }
+        }
+    });
+
+    const formUpdateUser = document.getElementById('formUpdateUser');
+    formUpdateUser.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const userId = document.getElementById('userUpdateId').value;
+        const token = localStorage.getItem('token');
+        
+        const payload = {
+            name: document.getElementById('userUpdateName').value,
+            email: document.getElementById('userUpdateEmail').value,
+            role: document.getElementById('userUpdateRole').value
+        };
+
+        try {
+            const response = await fetch(`${API_BASE}/users/${userId}`, {
+                method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(payload)
-            })
-            .then(res => {
-                if (!res.ok) {
-                    return res.json().then(errorData => {
-                        throw new Error(errorData.message || 'Failed to add room.');
-                    });
-                }
-                return res.json();
-            })
-            .then(data => {
-                alert('Room added successfully!');
-                $('#modalAddRoom').modal('hide');
-                this.reset();
-            })
-            .catch(err => {
-                console.error('Error adding room:', err);
-                alert('Failed to add room. Check the console for details.');
             });
-        });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to update user.');
+            }
+
+            fetchUsers();
+            $('#modalUpdateUser').modal('hide');
+            alert('User updated successfully!');
+        } catch (error) {
+            console.error('Update error:', error);
+            alert('Failed to update user: ' + error.message);
+        }
+    });
+
+    // --- ROOM MANAGEMENT FUNCTIONS ---
+    async function fetchRooms() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            roomsList.innerHTML = '<tr><td colspan="5" class="text-center text-danger">Authentication token not found.</td></tr>';
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE}/rooms`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch rooms.');
+            }
+
+            const data = await response.json();
+            roomsList.innerHTML = '';
+            
+            if (!data || !data.data || !Array.isArray(data.data)) {
+                roomsList.innerHTML = `<tr><td colspan="5" class="text-center text-danger">Unexpected data format from API.</td></tr>`;
+                return;
+            }
+
+            data.data.forEach(room => {
+               const features = room.features ? room.features.map(f => f.name).join(', ') : 'None';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${room.name || 'N/A'}</td>
+                <td>${room.location || 'N/A'}</td> 
+                <td>${room.capacity || 'N/A'}</td> 
+                <td>${features}</td>
+                <td  class="text-right d-flex flex-nowrap justify-content-end">
+                    <button class="btn btn-sm btn-info  edit-room-btn"  data-id="${room.id}"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-danger  delete-room-btn"  data-id="${room.id}"><i class="fas fa-trash-alt"></i></button>
+                </td>
+                `;
+                roomsList.appendChild(row);
+            });
+        } catch (error) {
+            console.error('Error fetching rooms:', error);
+            roomsList.innerHTML = `<tr><td colspan="5" class="text-center text-danger">Failed to load rooms: ${error.message}</td></tr>`;
+        }
+    }
+
+    async function deleteRoom(roomId) {
+        const token = localStorage.getItem('token');
+        if (!confirm('Are you sure you want to delete this room?')) return;
+        
+        try {
+            const response = await fetch(`${API_BASE}/rooms/${roomId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (response.ok) {
+                alert('Room deleted successfully!');
+                fetchRooms();
+            } else {
+                throw new Error('Failed to delete room.');
+            }
+        } catch (error) {
+            console.error('Delete room error:', error);
+            alert('Failed to delete room.');
+        }
+    }
+    
+    roomsList.addEventListener('click', async (e) => {
+
+        if (e.target.closest('.delete-room-btn')) {
+
+            const roomId = e.target.closest('.delete-room-btn').getAttribute('data-id');
+            deleteRoom(roomId);
+        } else if (e.target.closest('.edit-room-btn')) {
+           const roomId = e.target.closest('.edit-room-btn').getAttribute('data-id');
+           
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch(`${API_BASE}/rooms/${roomId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch room data for update.');
+                }
+                const roomData = await response.json();
+
+                const roomDetails = roomData.data;
+                document.getElementById('roomUpdateId').value = roomDetails.id;
+                document.getElementById('roomUpdateName').value = roomDetails.name;
+                document.getElementById('roomUpdateLocation').value = roomDetails.location;
+                document.getElementById('roomUpdateCapacity').value = roomDetails.capacity;
+                const featuresArray = roomDetails.features || [];
+                console.log('API returned features:', featuresArray);
+                
+                featuresArray.forEach(f => {
+                   console.log('Feature name from API:', f.name);
+                });
+                document.getElementById('featureUpdateProjector').checked = featuresArray.some(f => f.name === 'Projector');
+                document.getElementById('featureUpdateWhiteboard').checked = featuresArray.some(f => f.name === 'Whiteboard');
+                document.getElementById('featureUpdateConference').checked = featuresArray.some(f => f.name === 'Video Conferencing');
+                document.getElementById('featureUpdateWifi').checked = featuresArray.some(f => f.name === 'High-speed WiFi');
+
+                $('#modalUpdateRoom').modal('show');
+
+            } catch (error) {
+                console.error('Failed to load room data for update:', error);
+                alert('Failed to load room data. Check console for details.');
+            }
+        }
+    });
+    
+    const formUpdateRoom = document.getElementById('formUpdateRoom');
+    formUpdateRoom.addEventListener('submit', async (e) => {
+        e.preventDefault();
+         
+         const roomId = parseInt(document.getElementById('roomUpdateId').value, 10);
+
+         if (isNaN(roomId)) {
+           alert('Error: Room ID is invalid. Cannot update.');
+           return;
+         }
+        const token = localStorage.getItem('token');
+        
+        
+          
+        const payload = {
+            name: document.getElementById('roomUpdateName').value,
+            location: document.getElementById('roomUpdateLocation').value,
+            capacity: document.getElementById('roomUpdateCapacity').value,
+            features: {   
+
+            'Projector': document.getElementById('featureUpdateProjector').checked,
+            'Whiteboard': document.getElementById('featureUpdateWhiteboard').checked,
+            'Video Conferencing': document.getElementById('featureUpdateConference').checked,
+            'High-speed WiFi': document.getElementById('featureUpdateWifi').checked,
+            },
+        };
+        try {
+            const response = await fetch(`${API_BASE}/rooms/${roomId}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to update room.');
+            }
+
+            fetchRooms();
+            $('#modalUpdateRoom').modal('hide');
+            alert('Room updated successfully!');
+        } catch (error) {
+            console.error('Update room error:', error);
+            alert('Failed to update room: ' + error.message);
+        }
+    });
+
+    // --- INITIAL PAGE LOAD ---
+    document.addEventListener("DOMContentLoaded", function() {
+        fetchUsers();
+        fetchRooms();
     });
   </script>
 
