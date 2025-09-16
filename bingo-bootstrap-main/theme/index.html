@@ -123,6 +123,300 @@
     /* entry micro-animation */
     [data-animate]{ opacity:0; transform:translateY(8px); transition:opacity .35s ease, transform .35s ease; }
     [data-animate].in{ opacity:1; transform:none; }
+
+    .royale-quick-actions { display:flex; justify-content:flex-end; }
+.royale-card{ display:inline-block; padding:12px; border-radius:14px; backdrop-filter: blur(6px) saturate(120%); -webkit-backdrop-filter: blur(6px) saturate(120%);
+background: linear-gradient(180deg, rgba(43,0,90,0.075), rgba(12,6,30,0.035));
+border: 1px solid rgba(212,175,55,0.12); box-shadow: 0 6px 28px rgba(11,8,25,0.12);
+min-width: 320px; max-width: 420px;
+}
+.royale-heading{ font-size:12px; font-weight:700; color:#439d9a; margin-bottom:8px; letter-spacing:0.6px; text-transform:uppercase; }
+.royale-btn-group{ display:flex; gap:8px; align-items:center; }
+.royale-btn{ display:inline-flex; align-items:center; gap:10px; padding:8px 12px; border-radius:10px; font-weight:600; font-size:13px; cursor:pointer; border:none; transition: transform .18s cubic-bezier(.2,.9,.3,1), box-shadow .18s ease, opacity .12s ease; position:relative; overflow:hidden; }
+.royale-icon{ display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; font-size:16px; }
+.royale-text{ display:inline-block; white-space:nowrap; }
+
+
+/* Primary (Schedule) */
+.royale-primary{ color:#fff; background: linear-gradient(90deg,#50bec0 0%, #439d9a 60%); box-shadow: 0 8px 24px rgba(110,44,232,0.18), inset 0 -6px 18px rgba(0,0,0,0.06); border: 1px solid rgba(255,255,255,0.04); }
+
+
+/* Accent (Join) */
+.royale-join{ color:#ffffff; background: linear-gradient(90deg,#439d9a 0%, #50bec0 100%); border: 1px solid rgba(212,175,55,0.18); box-shadow: 0 6px 18px rgba(255,182,77,0.12); }
+
+
+/* Outline (View minutes) */
+.royale-outline{ color: rgba(255, 255, 255, 0.95);background: linear-gradient(90deg,#50bec0 0%, #439d9a 60%); border: 1px solid rgba(255,255,255,0.06); }
+
+
+/* Hover & focus */
+.royale-btn:hover, .royale-btn:focus{ transform: translateY(-3px); box-shadow: 0 14px 36px rgba(10,8,25,0.12); }
+.royale-btn:active{ transform: translateY(-1px) scale(.995); }
+.royale-btn:focus{ outline: 3px solid rgba(110,44,232,0.18); }
+
+
+/* small screens: wrap nicely */
+@media (max-width: 520px){
+.royale-card{ width:100%; box-sizing:border-box; }
+.royale-btn-group{ gap:6px; }
+.royale-btn{ flex:1; justify-content:center; }
+}
+
+
+/* optional tiny gold accent dot */
+.royale-btn::after{ content:""; position:absolute; right:8px; top:8px; width:6px; height:6px; border-radius:50%; background:linear-gradient(180deg,#fff59d,#4ca0b5); opacity:0; transform:scale(.85); transition:opacity .18s ease, transform .18s ease; }
+.royale-btn:hover::after{ opacity:.9; transform:scale(1); }
+
+.royale-upcoming{ margin-bottom:20px; }
+.royale-meeting-card{ padding:20px; border-radius:18px;
+  background: linear-gradient(135deg, #4fb2af, #439d9a);
+  backdrop-filter: blur(8px) saturate(150%);
+  border: 1px solid rgba(0, 234, 255, 0.25);
+  box-shadow: 0 10px 32px rgba(177, 177, 178, 0.45);
+  color:#eee; position:relative; overflow:hidden;
+}
+.royale-card-header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.royale-badge{ font-size:12px; font-weight:700; padding:4px 10px; border-radius:8px;
+  background:linear-gradient(90deg,#bbdee4,#b1eaf1); color:#4fb2af; }
+.royale-status{ font-size:13px; font-weight:600; color:#4fb2af; }
+.royale-meeting-main{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.royale-meeting-info{ flex:1; }
+.royale-meeting-list{ list-style:none; margin:0; padding:0; }
+.royale-meeting-list li{ padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+.royale-meeting-list li:last-child{ border-bottom:none; }
+.royale-meeting-actions{ display:flex; align-items:center; }
+.royale-btn{ padding:8px 14px; border-radius:10px; font-weight:600; cursor:pointer; transition:.2s; }
+.royale-outlinee{ background:transparent; border:1px solid rgba(255,255,255,0.25); color:#eee; }
+.royale-btn:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.25); }
+
+/* 🌌 Royale Ultra Availability */
+.royale-ultra {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(170, 225, 234, 0.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.royale-ultra .card-header {
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(90deg, #cfebf0, #fff);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.royale-title {
+  font-weight: 800;
+  font-size: 1.3rem;
+  background: linear-gradient(90deg, #4fb2af, #50bec0, #079590);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.date-badge {
+  background: linear-gradient(90deg, #84dee4, #ffffff);
+  border: 1px solid #50bec0;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #50bec0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.availability-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 25px;
+}
+
+.slot-ultra {
+  border-radius: 16px;
+  padding: 20px;
+  background: linear-gradient(145deg, #ffffff, #fdf5e6);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.slot-ultra:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.slot-room {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+.slot-time {
+  font-size: 14px;
+  color: #666;
+}
+
+.slot-status {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.slot-ultra.available .slot-status {
+  background: rgba(46, 204, 113, 0.15);
+  color: #479a89;
+}
+
+.slot-ultra.busy .slot-status {
+  background: rgba(231, 76, 60, 0.15);
+  color: #9d3333;
+}
+
+.slot-ultra.pending .slot-status {
+  background: rgba(241, 196, 15, 0.15);
+  color: #037a9a;
+}
+
+/* Footer Legend */
+.legend {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+}
+
+.legend-item {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.legend-item.available { background: #479a89; }
+.legend-item.busy { background: #9d3333;; }
+.legend-item.pending { background: #037a9a; }
+
+.footer-tip {
+  font-size: 13px;
+  color: #555;
+}
+
+
+/* 🌌 Royale Legendary Notifications */
+.royale-notif-card {
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(79,178,175,0.25);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+}
+
+.royale-notif-header {
+  margin-bottom: 14px;
+}
+
+.royale-badge-glow {
+  background: linear-gradient(90deg,#50bec0,#439d9a);
+  color: #fff;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 30px;
+  font-size: 13px;
+  box-shadow: 0 0 12px rgba(79,178,175,0.6);
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 rgba(79,178,175,0.5); }
+  50% { box-shadow: 0 0 20px rgba(79,178,175,0.9); }
+  100% { box-shadow: 0 0 0 rgba(79,178,175,0.5); }
+}
+
+.royale-notif-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 220px;
+}
+
+.royale-notif-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.18s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.royale-notif-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.royale-notif-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.royale-notif-text {
+  flex: 1;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.royale-notif-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-left: 8px;
+}
+
+/* Status variants */
+.royale-notif-item.success .royale-notif-icon {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+.royale-notif-item.warning .royale-notif-icon {
+  background: rgba(241, 196, 15, 0.2);
+  color: #f39c12;
+}
+.royale-notif-item.error .royale-notif-icon {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+}
+.royale-notif-item.info .royale-notif-icon {
+  background: rgba(79,178,175,0.2);
+  color: #439d9a;
+}
+
+.royale-notif-footer {
+  margin-top: 12px;
+}
+
   </style>
 </head>
 
@@ -235,64 +529,121 @@
           <h2 class="mb-0" id="dashboard-title">Dashboard :</h2>
           <div class="muted small" id="dashDate"></div>
         </div>
-        <div class="btn-group" role="group" aria-label="Quick Actions">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#scheduleModal">
-            <span class="mr-1"><i class="ti-plus"></i></span> Schedule Meeting
-          </button>
-          <button class="btn btn-outline-primary" id="joinNowBtn">
-            <span class="mr-1"><i class="ti-video-camera"></i></span> Join Now
-          </button>
-          <a class="btn btn-outline-secondary" id="viewMinutesBtn" href="#!">
-            <span class="mr-1"><i class="ti-agenda"></i></span> View Minutes
-          </a>
-        </div>
-      </div>
+        <div class="royale-quick-actions" aria-label="Quick Actions">
+<div class="royale-card">
+<div class="royale-heading">Quick Actions</div>
+<div class="royale-btn-group" role="group">
+<button class="royale-btn royale-primary" data-toggle="modal" data-target="#scheduleModal" aria-label="Schedule meeting">
+<span class="royale-icon"><i class="ti-plus"></i></span>
+<span class="royale-text">Schedule</span>
+</button>
 
-      <div class="row">
+
+<button class="royale-btn royale-join" id="joinNowBtn" aria-label="Join meeting now">
+<span class="royale-icon"><i class="ti-video-camera"></i></span>
+<span class="royale-text">Join Now</span>
+</button>
+
+
+<a class="royale-btn royale-outline" id="viewMinutesBtn" href="#!" aria-label="View minutes">
+<span class="royale-icon"><i class="ti-agenda"></i></span>
+<span class="royale-text">Minutes</span>
+</a>
+</div>
+</div>
+</div>
+      </div>
+<div class="row">
         <div class="col-lg-8 mb-4" data-animate>
-          <div class="card premium mb-4">
-            <div class="card-header d-flex align-items-center justify-content-between">
-              <h5 class="mb-0">Upcoming Meetings</h5>
-              <span class="badge badge-light" id="upcomingCount">0</span>
-            </div>
-            <ul class="list-group list-group-flush" id="upcomingList"></ul>
-            <div class="card-footer text-right">
-              <button class="btn btn-sm btn-outline-secondary" id="exportMeetingsBtn">Export (.json)</button>
-            </div>
-          </div>
+          <!-- START: Royale Upcoming Meeting -->
+<div class="royale-upcoming" aria-label="Upcoming Meetings">
+  <div class="royale-meeting-card">
+    <div class="royale-card-header">
+      <div class="royale-badge">Upcoming Meetings</div>
+      <span class="royale-status" id="upcomingCount">0</span>
+    </div>
 
-          <div class="card premium">
-            <div class="card-header d-flex align-items-center justify-content-between">
-              <h5 class="mb-0">Room Availability — Today</h5>
-              <div class="small muted" id="availabilityDate"></div>
-            </div>
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table table-bordered mb-0">
-                  <thead><tr id="roomsHeader"></tr></thead>
-                  <tbody id="availabilityBody"></tbody>
-                </table>
-              </div>
-              <div class="p-3 small muted">
-                Tip: Click an empty slot to pre-fill the scheduler with that time & room.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4" data-animate>
-          <div class="card premium">
-            <div class="card-header d-flex align-items-center justify-content-between">
-              <h5 class="mb-0">Notifications</h5>
-              <span class="badge badge-info" id="notifCount">0</span>
-            </div>
-            <ul class="list-group list-group-flush" id="notifList"></ul>
-            <div class="card-footer text-right">
-              <button class="btn btn-sm btn-outline-secondary" id="clearNotifsBtn">Clear</button>
-            </div>
-          </div>
-        </div>
+    <div class="royale-meeting-main">
+      <div class="royale-meeting-info">
+        <!-- dynamic content will be injected into this list -->
+        <ul class="royale-meeting-list" id="upcomingList"></ul>
       </div>
+
+      <div class="royale-meeting-actions">
+        <button class="royale-btn royale-outlinee" id="exportMeetingsBtn">
+          <i class="ti-download"></i> Export (.json)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END: Royale Upcoming Meeting -->
+
+
+
+<!-- 🌌 Royale Ultra Availability -->
+<div class="card royale-ultra mb-5">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h4 class="royale-title mb-0">Room Availability</h4>
+    <div class="date-badge" id="royaleUltraDate"></div>
+  </div>
+
+  <div class="card-body">
+    <div class="availability-timeline" id="royaleUltraGrid">
+      <!-- Dynamic slots injected -->
+    </div>
+  </div>
+
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <small class="footer-tip">
+      <i class="ti-crown text-warning"></i> Tap a free slot to schedule in style.
+    </small>
+    <div class="legend">
+      <span class="legend-item available"></span> Free
+      <span class="legend-item busy"></span> Occupied
+      <span class="legend-item pending"></span> Pending
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+        </div>
+
+        <!-- 🌌 Royale Legendary Notifications -->
+<div class="royale-notif-card">
+  <div class="royale-notif-header d-flex align-items-center justify-content-between">
+    <h5 class="royale-title mb-0">
+      <i class="ti-bell"></i> Notifications
+    </h5>
+    <span class="royale-badge-glow" id="notifCount">0</span>
+  </div>
+
+  <ul class="royale-notif-list" id="notifList">
+    <!-- Dynamic notifications will be injected here -->
+    <!-- Example static notification -->
+    <!--
+    <li class="royale-notif-item success">
+      <div class="royale-notif-icon"><i class="ti-check"></i></div>
+      <div class="royale-notif-text">
+        <strong>Meeting confirmed:</strong> Strategy Review at 10 AM
+      </div>
+      <div class="royale-notif-time">2m ago</div>
+    </li>
+    -->
+  </ul>
+
+  <div class="royale-notif-footer text-right">
+    <button class="royale-btn royale-outline" id="clearNotifsBtn">
+      <i class="ti-trash"></i> Clear All
+    </button>
+  </div>
+</div>
+
+      </div>
+      
     </div>
 
     <!-- Schedule Modal -->
@@ -369,16 +720,16 @@
        ============================== -->
   <script>
   (function(){
-    const ROOMS = ["Orion", "Nova", "Atlas", "Lyra"];
+      const ROOMS = ["Orion", "Nova", "Atlas", "Lyra"];
     const DAY_START_H = 8, DAY_END_H = 18;
     const KEY_MEETINGS = "sms_meetings";
     const KEY_MINUTES  = "sms_minutes";
     const KEY_NOTIFS   = "sms_notifications";
 
-    const dashDateEl         = document.getElementById("dashDate");
-    const availabilityDateEl = document.getElementById("availabilityDate");
-    const roomsHeaderEl      = document.getElementById("roomsHeader");
-    const availabilityBodyEl = document.getElementById("availabilityBody");
+     const dashDateEl         = document.getElementById("dashDate");
+   
+    
+   
     const upcomingListEl     = document.getElementById("upcomingList");
     const upcomingCountEl    = document.getElementById("upcomingCount");
     const notifListEl        = document.getElementById("notifList");
@@ -424,60 +775,11 @@
     }
 
     // seed demo data once
-    (function seed(){
-      const seeded = load(KEY_MEETINGS, null);
-      if (seeded) return;
-      const t = now();
-      const today = new Date(t.getFullYear(), t.getMonth(), t.getDate(), 10, 0, 0);
-      const sample = [
-        { id: cryptoRandom(), title:"Daily Standup",  room:"Orion", start: toISO(today),                 duration:30, participants:["team@x.com"],   description:"15-min sync",          join:"/meet/standup"},
-        { id: cryptoRandom(), title:"UX Review",      room:"Lyra",  start: toISO(addMinutes(today,120)), duration:60, participants:["ux@x.com"],     description:"Design milestones",    join:"/meet/ux"},
-        { id: cryptoRandom(), title:"Client Kickoff", room:"Atlas", start: toISO(addMinutes(today,240)), duration:45, participants:["client@x.com"], description:"Scope & deliverables", join:"/meet/kickoff"}
-      ];
-      save(KEY_MEETINGS, sample);
-      save(KEY_MINUTES, {});
-      save(KEY_NOTIFS, []);
-    })();
+    
+    
 
-    dashDateEl.textContent = fmtDate(now());
-    availabilityDateEl.textContent = fmtDate(now());
-    mRoom.innerHTML = ROOMS.map(r => `<option value="${r}">${r}</option>`).join("");
-    roomsHeaderEl.innerHTML = ['<th class="align-middle">Time</th>'].concat(ROOMS.map(r => `<th>${r}</th>`)).join("");
-
-    function renderAvailability(){
-      const meetings = load(KEY_MEETINGS, []);
-      const today = new Date();
-      let rows = "";
-      for(let h = DAY_START_H; h <= DAY_END_H; h++){
-        const slotStart = new Date(today.getFullYear(), today.getMonth(), today.getDate(), h, 0,0,0);
-        const slotEnd   = new Date(today.getFullYear(), today.getMonth(), today.getDate(), h+1, 0,0,0);
-        const cells = [`<td class="muted small">${fmtTime(slotStart)}–${fmtTime(slotEnd)}</td>`];
-        for(const room of ROOMS){
-          const booked = meetings.some(m => {
-            const ms = parse(m.start), me = addMinutes(ms, m.duration);
-            return m.room === room && overlaps(ms, me, slotStart, slotEnd);
-          });
-          const cls = booked ? "booked" : "available";
-          const label = booked ? "Booked" : "Available";
-          cells.push(
-            `<td><div class="slot ${cls}" data-room="${room}" data-start="${slotStart.toISOString()}">${label}</div></td>`
-          );
-        }
-        rows += `<tr>${cells.join("")}</tr>`;
-      }
-      availabilityBodyEl.innerHTML = rows;
-      availabilityBodyEl.querySelectorAll('.slot.available').forEach(el=>{
-        el.addEventListener('click', ()=>{
-          const room = el.getAttribute('data-room');
-          const startISO = el.getAttribute('data-start');
-          mRoom.value = room;
-          mStart.value = startISO.slice(0,16);
-          mDuration.value = 60;
-          $('#scheduleModal').modal('show');
-        });
-      });
-    }
-
+    
+     
     function renderUpcoming(){
       const meetings = load(KEY_MEETINGS, []);
       const upcoming = meetings
@@ -639,7 +941,7 @@
       refresh();
     });
 
-    function refresh(){ renderAvailability(); renderUpcoming(); renderNotifs(); }
+    function refresh(){  renderUpcoming(); renderNotifs(); }
     function scheduleTick(){
       const meetings = load(KEY_MEETINGS, []);
       const t = Date.now();
@@ -715,16 +1017,30 @@ document.getElementById("logoutBtn").addEventListener("click", function (e) {
 
 
   // Example: fetch current user and show name
-  (async () => {
-    try {
-      const res = await authFetch('/user'); // GET /api/user
-      const me = await res.json();          // {id, name, email, ...}
-      const el = document.getElementById('welcomeUser');
-      if (el) el.textContent = me.name || me.email || 'User';
-    } catch (e) {
-      console.error('Failed to load user', e);
+ 
+(async () => {
+  try {
+    if (typeof authFetch !== 'function') {
+      // authFetch isn't loaded yet (js/api.js). Defer until DOM is ready.
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof authFetch === 'function') {
+          authFetch('/user').then(r => r.json())
+            .then(me => {
+              const el = document.getElementById('welcomeUser');
+              if (el) el.textContent = me.name || me.email || 'User';
+            }).catch(()=>{/* ignore */});
+        }
+      });
+      return;
     }
-  })();
+    const res = await authFetch('/user');
+    const me = await res.json();
+    const el = document.getElementById('welcomeUser');
+    if (el) el.textContent = me.name || me.email || 'User';
+  } catch (e) {
+    console.error('Failed to load user', e);
+  }
+})();
   </script>
   <script src="js/guard.js"></script>
   <script src="js/api.js"></script>
@@ -824,7 +1140,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<script>
+// Small ripple effect and keyboard accessibility helper
+(function (){
+function ripple(e){
+const btn = e.currentTarget;
+const circle = document.createElement('span');
+const d = Math.max(btn.clientWidth, btn.clientHeight);
+const rect = btn.getBoundingClientRect();
+circle.style.width = circle.style.height = d + 'px';
+circle.style.left = (e.clientX - rect.left - d/2) + 'px';
+circle.style.top = (e.clientY - rect.top - d/2) + 'px';
+circle.className = 'royale-ripple';
+btn.appendChild(circle);
+setTimeout(()=> circle.remove(), 450);
+}
 
+
+document.querySelectorAll('.royale-btn').forEach(btn=>{
+btn.addEventListener('click', ripple);
+// keyboard: space/enter simulate click visual
+btn.addEventListener('keydown', function(ev){ if(ev.key=== 'Enter' || ev.key === ' '){ btn.classList.add('pressed'); setTimeout(()=>btn.classList.remove('pressed'),200); }});
+});
+})();
+</script>
+
+
+<style>
+/* ripple style (scoped small) */
+.royale-ripple{ position:absolute; border-radius:50%; transform:scale(0); animation:royale-ripple .45s ease-out; pointer-events:none; background: rgba(255,255,255,0.22); mix-blend-mode: overlay; }
+@keyframes royale-ripple{ to{ transform:scale(2.6); opacity:0; } }
+</style>
+
+
+
+<script>
+ const ultraRooms = [
+  { room: "Emerald Hall", time: "09:00 - 10:00", status: "available" },
+  { room: "Ruby Room", time: "10:00 - 11:00", status: "busy" },
+  { room: "Diamond Suite", time: "11:00 - 12:00", status: "pending" },
+  { room: "Sapphire Chamber", time: "12:00 - 13:00", status: "available" },
+];
+
+function renderUltraAvailability(data) {
+  const grid = document.getElementById("royaleUltraGrid");
+  grid.innerHTML = "";
+
+  data.forEach(slot => {
+    const div = document.createElement("div");
+    div.className = `slot-ultra ${slot.status}`;
+    div.innerHTML = `
+      <div class="slot-room">${slot.room}</div>
+      <div class="slot-time">${slot.time}</div>
+      <span class="slot-status">${slot.status.toUpperCase()}</span>
+    `;
+
+    div.addEventListener("click", () => {
+      if (slot.status === "available") {
+        alert(`✨ Scheduled: ${slot.room} at ${slot.time}`);
+      } else {
+        alert(`⚠ ${slot.room} is currently ${slot.status}`);
+      }
+    });
+
+    grid.appendChild(div);
+  });
+
+  // Date
+  const dateEl = document.getElementById("royaleUltraDate");
+  if (dateEl) {
+    dateEl.textContent = new Date().toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric"
+    });
+  }
+}
+
+renderUltraAvailability(ultraRooms);
+
+
+</script>
 
 </body>
 </html>
