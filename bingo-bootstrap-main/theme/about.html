@@ -92,6 +92,7 @@ Fixed Navigation
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
                 <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
                 <li><a class="dropdown-item" href="activemeetingsreen.html">Active Meeting Screen</a></li>
+				<li><a class="dropdown-item" href="mom.html">Minutes of Meeting</a></li>
               </ul>
             </li>
           <li class="nav-item" id="logoutBTn">
@@ -121,7 +122,19 @@ Fixed Navigation
         loginLogoutNav.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
       }
     });
+
+	document.getElementById("logoutBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+  // Clear all auth-related localStorage keys and cookies so switching users works reliably
+  ['token','user','role','loggedIn'].forEach(k => localStorage.removeItem(k));
+  // Clear our session cookies (if present)
+  document.cookie = 'sms_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  document.cookie = 'sms_user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  window.location.href = "index.html";
+});
   </script>
+
+  
     <!-- /main nav -->
   </div>
 </header>

@@ -23,6 +23,7 @@
       <nav class="navbar navbar-expand-lg navbar-light px-0">
         <a class="navbar-brand logo" href="index.html">
           <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="60" width="60" />
+
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +45,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
                 <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
                 <li><a class="dropdown-item" href="activemeetingsreen.html">Active Meeting Screen</a></li>
+                <li><a class="dropdown-item" href="mom.html">Minutes of Meeting</a></li>
               </ul>
             </li>
             <li class="nav-item" id="logoutBTn">
@@ -85,8 +87,8 @@
     width: 100%;          /* Full width */
             /* Covers the whole page height */
     background-color: #078992; /* Your navbar color */
-    z-index: -1;    
-     
+    z-index: -1;
+
     }
     .card {
       border-radius: 12px;
@@ -512,8 +514,10 @@
      <script>
     document.addEventListener("DOMContentLoaded", function() {
       // User form submission
+
       const userForm= document.getElementById('formAddUser');
       userForm.addEventListener('submit', function(e) {
+
         e.preventDefault();
 
         const token = localStorage.getItem('token');
@@ -528,12 +532,14 @@
         payload.set('password', document.getElementById('userPassword').value);
         payload.set('role', document.getElementById('userRole').value);
 
+
         fetch('http://127.0.0.1:8000/api/users', {
           method: 'POST',
           body: payload,
           headers: {
             'Authorization': `Bearer ${token}`, 
           },  
+
         })
         .then(res => res.json())
         .then(data => {
@@ -636,7 +642,6 @@
                  userListTable.innerHTML = `<tr><td colspan="4" class="text-center text-danger">Unexpected data format from API.</td></tr>`;
                  return;
             }
-
             data.data.forEach(user => {
                 const row = document.createElement('tr');
                 row.innerHTML = `

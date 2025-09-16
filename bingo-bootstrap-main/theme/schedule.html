@@ -5,7 +5,7 @@
   <title>MeetPro - Schedule</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="images/l1.png">
 
@@ -13,129 +13,44 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* Color Scheme with #006A71 as primary */
+  <link rel="stylesheet" href="css/style.css">
+
+   <style>
     :root {
       --primary-color: #006A71;
       --primary-dark: #191b1b;
       --primary-light: rgba(0, 106, 113, 0.1);
     }
-    
-    body {
-      padding-top: 70px;
-      background-color: #f8f9fa;
-    }
-    
-    /* Primary Elements */
-    .btn-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-    }
-    .btn-primary:hover {
-      background-color: var(--primary-dark);
-      border-color: var(--primary-dark);
-    }
-    
-    .bg-primary {
-      background-color: var(--primary-color) !important;
-    }
-    
-    .text-primary {
-      color: var(--primary-color) !important;
-    }
-    
-    /* Calendar Styling */
-    .schedule-container {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    
-    .fc-event {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
-    
-    .fc-event:hover {
-      background-color: var(--primary-dark);
-      border-color: var(--primary-dark);
-    }
-    
-    /* Meeting Card */
-    .meeting-details-card {
-      border-left: 4px solid var(--primary-color);
-      transition: all 0.3s ease;
-    }
-    
-    .badge-room {
-      background-color: var(--primary-light);
-      color: var(--primary-color);
-    }
-    
-    /* Attendees */
-    .attendee-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid white;
-      margin-right: -10px;
-    }
-    
-    .attendee-more {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #e9ecef;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: bold;
-    }
-    
-    /* Navigation */
-    
-    .navbar {
-       position: fixed;      /* Stays in place */
-    top: 0;
-    left: 0;
-    width: 100%;          /* Full width */
-            /* Covers the whole page height */
-    background-color: #078992; /* Your navbar color */
-       
-     
-    }
-    
-    .nav-link.active {
-      font-weight: bold;
-    }
-    
-    /* Modal Header */
-    .modal-header {
-      background-color: var(--primary-color);
-      color: white;
-    }
+    body { padding-top: 70px; background-color: #f8f9fa; }
+    .btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
+    .btn-primary:hover { background-color: var(--primary-dark); border-color: var(--primary-dark); }
+    .bg-primary { background-color: var(--primary-color) !important; }
+    .text-primary { color: var(--primary-color) !important; }
+    .schedule-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+    .fc-event { background-color: var(--primary-color); border-color: var(--primary-color); cursor: pointer; font-size: 0.85rem; }
+    .fc-event:hover { background-color: var(--primary-dark); border-color: var(--primary-dark); }
+    .meeting-details-card { border-left: 4px solid var(--primary-color); transition: all 0.3s ease; }
+    .badge-room { background-color: var(--primary-light); color: var(--primary-color); }
+    .attendee-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid white; margin-right: -10px; }
+    .attendee-more { width: 32px; height: 32px; border-radius: 50%; background: #e9ecef; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; }
+    .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: #078992; }
+    .nav-link.active { font-weight: bold; }
+    .modal-header { background-color: var(--primary-color); color: white; }
   </style>
 </head>
 <body>
 
 <!-- Navigation -->
-  <header class="navigation fixed-top">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light px-0">
-        <a class="navbar-brand logo" href="index.html">
-          <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="60" width="60" />
-          
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<header class="navigation fixed-top">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light px-0">
+      <a class="navbar-brand logo" href="index.html">
+        <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="60" width="60" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav ms-auto text-center">
@@ -153,6 +68,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown02">
                 <li><a class="dropdown-item" href="meetingroombooking.html">Meeting Room Booking</a></li>
                 <li><a class="dropdown-item" href="activemeetingsreen.html">Active Meeting Screen</a></li>
+                <li><a class="dropdown-item" href="mom.html">Minutes of Meeting</a></li>
               </ul>
             </li>
             <li class="nav-item" id="logoutBTn">
@@ -164,25 +80,6 @@
     </div>
   </header>
 
-  <!-- ==============================
-       LOGIN/LOGOUT NAV STATE
-       ============================== -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const loginLogoutNav = document.getElementById("loginLogoutNav");
-      const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-      if (isLoggedIn) {
-        loginLogoutNav.innerHTML = `<a class="nav-link" href="#" id="logoutBtn">Logout</a>`;
-        document.getElementById("logoutBtn").addEventListener("click", function (e) {
-          e.preventDefault();
-          localStorage.removeItem("loggedIn");
-          window.location.href = "index.html";
-        });
-      } else {
-        loginLogoutNav.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
-      }
-    });
-  </script>
 <!-- Main Content -->
 <div class="container mt-4">
   <div class="schedule-container">
@@ -193,14 +90,18 @@
       </div>
       <div class="col-md-4 text-end">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMeetingModal">
-          <i class="fas fa-plus"></i> New Meeting
+
+  <a href="meetingroombooking.html" class="btn btn-primary">
+    <i class="fas fa-plus"></i> New Meeting
+  </a>
+</div>
+
         </button>
       </div>
     </div>
-    
-    <!-- Calendar -->
+
     <div id="calendar"></div>
-    
+
     <!-- Meeting Details Panel -->
     <div class="row mt-4" id="meetingDetailsPanel" style="display: none;">
       <div class="col-12">
@@ -208,63 +109,30 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-8">
-                <h3 id="detailMeetingTitle">Quarterly Review</h3>
+                <h3 id="detailMeetingTitle"></h3>
                 <div class="mb-3">
                   <span class="badge badge-room me-2">
-                    <i class="fas fa-map-marker-alt"></i> <span id="detailRoom">Conference Room A</span>
+                    <i class="fas fa-map-marker-alt"></i> <span id="detailRoom"></span>
                   </span>
                   <span class="badge bg-primary me-2">
-                    <i class="fas fa-clock"></i> <span id="detailTime">10:00 AM - 11:30 AM</span>
+                    <i class="fas fa-clock"></i> <span id="detailTime"></span>
                   </span>
                   <span class="badge bg-secondary">
-                    <i class="fas fa-calendar"></i> <span id="detailDate">June 15, 2023</span>
+                    <i class="fas fa-calendar"></i> <span id="detailDate"></span>
                   </span>
                 </div>
-                <p id="detailDescription">Quarterly performance review and planning session</p>
-                
+                <p id="detailDescription"></p>
+
                 <h5 class="mt-4">Agenda</h5>
-                <ul id="detailAgenda">
-                  <li>Performance Review (30 mins)</li>
-                  <li>Planning Session (40 mins)</li>
-                  <li>Q&A (20 mins)</li>
-                </ul>
+                <ul id="detailAgenda"></ul>
               </div>
               <div class="col-md-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h5 class="mb-0">Attendees (5)</h5>
-                  <button class="btn btn-sm btn-outline-secondary">Invite More</button>
-                </div>
-                <div id="detailAttendees" class="mb-4">
-                  <img src="https://randomuser.me/api/portraits/women/44.jpg" class="attendee-avatar" title="Sarah Johnson">
-                  <img src="https://randomuser.me/api/portraits/men/32.jpg" class="attendee-avatar" title="Michael Chen">
-                  <img src="https://randomuser.me/api/portraits/men/22.jpg" class="attendee-avatar" title="David Wilson">
-                  <img src="https://randomuser.me/api/portraits/women/63.jpg" class="attendee-avatar" title="Emily Rodriguez">
-                  <span class="attendee-more" title="2 more">+2</span>
-                </div>
-                
-                <div class="mb-4">
-                  <h5>Meeting Links</h5>
-                  <div class="input-group mb-2">
-                    <input type="text" class="form-control form-control-sm" value="https://meetpro.com/join/abc123" readonly>
-                    <button class="btn btn-sm btn-outline-secondary" type="button">
-                      <i class="fas fa-copy"></i>
-                    </button>
-                  </div>
-                  <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" value="https://zoom.us/j/123456789" readonly>
-                    <button class="btn btn-sm btn-outline-secondary" type="button">
-                      <i class="fas fa-copy"></i>
-                    </button>
-                  </div>
-                </div>
-                
+                <h5>Attendees</h5>
+                <div id="detailAttendees" class="mb-4"></div>
                 <button class="btn btn-primary w-100 mb-2">
                   <i class="fas fa-video"></i> Join Meeting
                 </button>
-                <button class="btn btn-outline-secondary w-100 mb-2">
-                  <i class="fas fa-bell"></i> Set Reminder
-                </button>
-                <button class="btn btn-outline-danger w-100">
+                <button class="btn btn-outline-danger w-100" id ="deleteMeetingBtn">
                   <i class="fas fa-times"></i> Cancel Meeting
                 </button>
               </div>
@@ -274,85 +142,83 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- New Meeting Modal -->
-<div class="modal fade" id="newMeetingModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-white">
-        <h5 class="modal-title">Schedule New Meeting</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label class="form-label">Meeting Title</label>
-              <input type="text" class="form-control" placeholder="Team Standup">
+  <!-- New Meeting Modal -->
+  <div class="modal fade" id="newMeetingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header text-white">
+          <h5 class="modal-title">Schedule New Meeting</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="newMeetingForm">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Meeting Title</label>
+                <input type="text" class="form-control" id="meetingTitle" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Room</label>
+                <select class="form-select" id="meetingRoom" required>
+                  <option>Conference Room A</option>
+                  <option>Boardroom B</option>
+                  <option>Creative Space C</option>
+                  <option>Huddle Room D</option>
+                </select>
+              </div>
             </div>
-            <div class="col-md-6">
-              <label class="form-label">Room</label>
-              <select class="form-select">
-                <option>Conference Room A</option>
-                <option>Boardroom B</option>
-                <option>Virtual Meeting</option>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" id="meetingDate" required>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Start Time</label>
+                <input type="time" class="form-control" id="meetingStartTime" required>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">End Time</label>
+                <input type="time" class="form-control" id="meetingEndTime" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" id="meetingDescription" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Agenda</label>
+              <textarea class="form-control" id="meetingAgenda" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Attendees</label>
+              <select class="form-select" id="meetingAttendees" multiple>
+                <option>Sarah Johnson</option>
+                <option>Michael Chen</option>
+                <option>David Wilson</option>
+                <option>Emily Rodriguez</option>
               </select>
             </div>
-          </div>
-          
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label class="form-label">Date</label>
-              <input type="date" class="form-control">
-            </div>
-            <div class="col-md-3">
-              <label class="form-label">Start Time</label>
-              <input type="time" class="form-control">
-            </div>
-            <div class="col-md-3">
-              <label class="form-label">End Time</label>
-              <input type="time" class="form-control">
-            </div>
-          </div>
-          
-          <div class="mb-3">
-            <label class="form-label">Description</label>
-            <textarea class="form-control" rows="3"></textarea>
-          </div>
-          
-          <div class="mb-3">
-            <label class="form-label">Agenda</label>
-            <textarea class="form-control" rows="3" placeholder="Enter agenda items"></textarea>
-          </div>
-          
-          <div class="mb-3">
-            <label class="form-label">Attendees</label>
-            <select class="form-select" multiple>
-              <option>Sarah Johnson</option>
-              <option>Michael Chen</option>
-              <option>David Wilson</option>
-              <option>Emily Rodriguez</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Schedule Meeting</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="scheduleMeetingBtn">Schedule Meeting</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- JavaScript -->
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize calendar with example meetings
+let calendar;
+
+ document.addEventListener('DOMContentLoaded', function() {
   const calendarEl = document.getElementById('calendar');
-  const calendar = new FullCalendar.Calendar(calendarEl, {
+  calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'timeGridWeek',
     headerToolbar: {
       left: 'prev,next today',
@@ -360,109 +226,152 @@ document.addEventListener('DOMContentLoaded', function() {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     nowIndicator: true,
-    events: [
-      {
-        title: 'Daily Standup',
-        start: new Date(new Date().setHours(9,0,0,0)),
-        end: new Date(new Date().setHours(9,15,0,0)),
-        color: '#006A71',
-        extendedProps: {
-          room: 'Virtual Meeting',
-          description: 'Daily team sync to discuss progress and blockers',
-          agenda: [
-            'Roundtable updates (10 mins)',
-            'Blockers discussion (5 mins)'
-          ],
-          attendees: 4,
-          link: 'https://zoom.us/j/123456'
-        }
-      },
-      {
-        title: 'Client Review',
-        start: new Date(new Date().setHours(14,0,0,0)),
-        end: new Date(new Date().setHours(15,30,0,0)),
-        color: '#006A71',
-        extendedProps: {
-          room: 'Conference Room B',
-          description: 'Quarterly review with client stakeholders',
-          agenda: [
-            'Performance metrics (30 mins)',
-            'New proposals (45 mins)',
-            'Q&A (15 mins)'
-          ],
-          attendees: 6,
-          link: 'https://meetpro.com/join/client123'
-        }
-      },
-      {
-        title: 'Project Retrospective',
-        start: new Date(new Date().setDate(new Date().getDate() + 1)),
-        end: new Date(new Date().setDate(new Date().getDate() + 1)),
-        color: '#006A71',
-        extendedProps: {
-          room: 'Boardroom A',
-          description: 'Review of completed project milestones',
-          agenda: [
-            'Successes (30 mins)',
-            'Challenges (30 mins)',
-            'Improvements (30 mins)'
-          ],
-          attendees: 5,
-          link: 'https://zoom.us/j/789012'
-        }
-      },
-      {
-        title: 'Training Session',
-        start: new Date(new Date().setDate(new Date().getDate() + 2)),
-        end: new Date(new Date().setDate(new Date().getDate() + 2)),
-        color: '#006A71',
-        extendedProps: {
-          room: 'Training Room 1',
-          description: 'New software onboarding for team',
-          agenda: [
-            'System overview (45 mins)',
-            'Hands-on practice (60 mins)'
-          ],
-          attendees: 8,
-          link: 'https://meetpro.com/join/training456'
-        }
+    events: async function(fetchInfo, successCallback, failureCallback) {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://127.0.0.1:8000/api/meetings", {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+        const data = await res.json();
+
+        const events = data.map(m => ({
+          id: m.id,
+          title: m.title,
+          start: m.booking_start,
+          end: m.booking_end,
+          color: '#006A71',
+          extendedProps: {
+            room: m.room?.name || m.room,
+            description: m.description,
+            agenda: m.agenda ? m.agenda.split("\n") : [],
+            attendees: m.attendees || []
+          }
+        }));
+
+        successCallback(events);
+      } catch (err) {
+        console.error(err);
+        failureCallback(err);
       }
-    ],
+    },
     eventClick: function(info) {
-      const event = info.event;
-      
-      // Update meeting details panel
+       const event = info.event;
       document.getElementById('detailMeetingTitle').textContent = event.title;
-      document.getElementById('detailRoom').textContent = event.extendedProps.room;
+      document.getElementById('detailRoom').textContent = event.extendedProps.room || '';
       document.getElementById('detailDate').textContent = event.start.toLocaleDateString();
-      document.getElementById('detailTime').textContent = 
-        event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ' - ' + 
+      document.getElementById('detailTime').textContent =
+        event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ' - ' +
         event.end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-      document.getElementById('detailDescription').textContent = event.extendedProps.description;
-      
-      // Update agenda
+      document.getElementById('detailDescription').textContent = event.extendedProps.description || '';
+
       const agendaList = document.getElementById('detailAgenda');
       agendaList.innerHTML = '';
-      event.extendedProps.agenda.forEach(item => {
+      (event.extendedProps.agenda || []).forEach(item => {
         const li = document.createElement('li');
         li.textContent = item;
         agendaList.appendChild(li);
       });
-      
-      // Show the panel
-      document.getElementById('meetingDetailsPanel').style.display = 'block';
-      
-      // Scroll to details panel
-      document.getElementById('meetingDetailsPanel').scrollIntoView({
-        behavior: 'smooth'
+
+      const attendeesDiv = document.getElementById('detailAttendees');
+      attendeesDiv.innerHTML = '';
+      (event.extendedProps.attendees || []).forEach(name => {
+        const span = document.createElement('span');
+        span.textContent = name;
+        span.classList.add("badge","bg-light","text-dark","me-1");
+        attendeesDiv.appendChild(span);
       });
+
+      document.getElementById('meetingDetailsPanel').style.display = 'block';
+      document.getElementById('meetingDetailsPanel').scrollIntoView({ behavior: 'smooth' });
+   //delete meeting
+   document.getElementById('deleteMeetingBtn').addEventListener('click', async function() {
+document.getElementById('detailMeetingTitle').textContent = event.title;
+document.getElementById('detailMeetingTitle').dataset.id = event.id; // store ID
+  const meetingId = document.getElementById('detailMeetingTitle').dataset.id;
+
+  if(!meetingId) return alert('Meeting ID not found');
+
+  if(!confirm('Are you sure you want to delete this meeting?')) return;
+
+  try {
+    const res = await fetch(`http://127.0.0.1:8000/api/meetings/${meetingId}`, {
+      method: 'DELETE',
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    if(res.ok) {
+      alert('Meeting deleted successfully');
+      calendar.refetchEvents();
+      document.getElementById('meetingDetailsPanel').style.display = 'none';
+    } else {
+      alert('Error deleting meeting');
+    }
+  } catch(err) {
+    console.error(err);
+    alert('Network error');
+  }
+});
+
     }
   });
-  
+
   calendar.render();
+
+  // Save meeting
+  document.getElementById('scheduleMeetingBtn').addEventListener('click', async function() {
+    const title = document.getElementById('meetingTitle').value;
+    const room = document.getElementById('meetingRoom').value;
+    const date = document.getElementById('meetingDate').value;
+    const startTime = document.getElementById('meetingStartTime').value;
+    const endTime = document.getElementById('meetingEndTime').value;
+    const description = document.getElementById('meetingDescription').value;
+    const agenda = document.getElementById('meetingAgenda').value;
+    const attendees = Array.from(document.getElementById('meetingAttendees').selectedOptions).map(opt => opt.value);
+
+    if(!title || !date || !startTime || !endTime) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    const payload = {
+      title,
+      room_id: room, // adjust if backend expects room_id not name
+      booking_start: date + " " + startTime,
+      booking_end: date + " " + endTime,
+      description,
+      agenda,
+      attendees
+    };
+
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/meetings", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if(res.ok) {
+        calendar.refetchEvents();
+        const modalEl = document.getElementById('newMeetingModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+        document.getElementById('newMeetingForm').reset();
+      } else {
+        alert("Error scheduling meeting.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Network error.");
+    }
+  });
 });
-</script>
- <script src="js/role-visibility.js"></script>
+ </script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>login</title>
   <link rel="shortcut icon" type="image/x-icon" href="images/l1.png">
+
   <!-- Bootstrap 4 -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 
@@ -154,7 +155,7 @@
       100%{ transform: translateY(0) rotate(0) scale(1); opacity:0.9 }
     }
 
-     ripple waves triggered on login 
+     ripple waves triggered on login
     .ripple {
       position:absolute;
       border-radius:50%;
@@ -355,7 +356,7 @@ added */
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
     }
-    
+
 #floating-particles {
   position: fixed;          /* sits on top of page but can be moved with z-index */
   inset: 0;                 /* full-screen cover */
@@ -392,7 +393,7 @@ added */
 </div>
   <div class="scene" id="scene">
     <!-- PORTAL: circular integrated image with animated overlays -->
-    
+
 
     <!-- FLOATING CARD that visually projects out of portal -->
     <div class="card-wrap" id="cardWrap">
@@ -488,7 +489,7 @@ added */
         const ry = -(dx / rect.width) * limiter;  // rotateY
 
         // subtle transforms
-      
+
         cardWrap.style.transform = `translateZ(120px) rotateX(${rx*0.35}deg) rotateY(${ry*0.35}deg) translateY(-18px)`;
         // parallax image translate smaller
         portalImg.style.transform = `scale(1.02) translate3d(${ry*0.6}px, ${-rx*0.6}px, 0)`;
@@ -496,7 +497,7 @@ added */
 
       // reset on mouse leave
       document.addEventListener('mouseleave', ()=>{
-        
+
         cardWrap.style.transform = 'translateZ(120px) translateY(-18px)';
         portalImg.style.transform = '';
       });
