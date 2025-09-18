@@ -531,26 +531,30 @@ min-width: 320px; max-width: 420px;
         </div>
         <div class="royale-quick-actions" aria-label="Quick Actions">
 <div class="royale-card">
-<div class="royale-heading">Quick Actions</div>
-<div class="royale-btn-group" role="group">
-<button class="royale-btn royale-primary" data-toggle="modal" data-target="#scheduleModal" aria-label="Schedule meeting">
-<span class="royale-icon"><i class="ti-plus"></i></span>
-<span class="royale-text">Schedule</span>
-</button>
+  <div class="royale-heading">Quick Actions</div>
+  <div class="royale-btn-group" role="group">
 
+    <!-- Schedule: go to booking page -->
+    <a class="royale-btn royale-primary" href="meetingroombooking.html" aria-label="Schedule meeting">
+      <span class="royale-icon"><i class="ti-plus"></i></span>
+      <span class="royale-text">Schedule</span>
+    </a>
 
-<button class="royale-btn royale-join" id="joinNowBtn" aria-label="Join meeting now">
-<span class="royale-icon"><i class="ti-video-camera"></i></span>
-<span class="royale-text">Join Now</span>
-</button>
+    <!-- Join Now: go to join page -->
+    <a class="royale-btn royale-join" href="activemeetingsreen.html" aria-label="Join meeting now">
+      <span class="royale-icon"><i class="ti-video-camera"></i></span>
+      <span class="royale-text">Join Now</span>
+    </a>
 
+    <!-- Minutes: go to MOM page -->
+    <a class="royale-btn royale-outline" href="mom.html" aria-label="View minutes">
+      <span class="royale-icon"><i class="ti-agenda"></i></span>
+      <span class="royale-text"> View Minutes</span>
+    </a>
 
-<a class="royale-btn royale-outline" id="viewMinutesBtn" href="#!" aria-label="View minutes">
-<span class="royale-icon"><i class="ti-agenda"></i></span>
-<span class="royale-text">Minutes</span>
-</a>
+  </div>
 </div>
-</div>
+
 </div>
       </div>
 <div class="row">
@@ -735,9 +739,7 @@ min-width: 320px; max-width: 420px;
     const notifListEl        = document.getElementById("notifList");
     const notifCountEl       = document.getElementById("notifCount");
 
-    const joinNowBtn         = document.getElementById("joinNowBtn");
-    const viewMinutesBtn     = document.getElementById("viewMinutesBtn");
-    const exportMeetingsBtn  = document.getElementById("exportMeetingsBtn");
+   const exportMeetingsBtn  = document.getElementById("exportMeetingsBtn");
     const clearNotifsBtn     = document.getElementById("clearNotifsBtn");
 
     const form               = document.getElementById("scheduleForm");
@@ -850,53 +852,7 @@ min-width: 320px; max-width: 420px;
       }).join("");
     }
 
-    function openMinutes(id){
-      const meetings = load(KEY_MEETINGS, []);
-      const minutes = load(KEY_MINUTES, {});
-      const m = meetings.find(x=>x.id===id);
-      if(!m) return;
-      $('#minutesModal').modal('show');
-      minutesBody.innerHTML = `
-        <div class="mb-1 muted small">${new Date(m.start).toLocaleString()} • Room ${m.room}</div>
-        <h5 class="mb-3">${m.title}</h5>
-        <div class="form-group">
-          <label>Minutes / Notes</label>
-          <textarea class="form-control" id="minutesText" rows="8" placeholder="Decisions, action items, owners...">${minutes[id] || ''}</textarea>
-        </div>`;
-      saveMinutesBtn.onclick = function(){
-        const text = document.getElementById('minutesText').value.trim();
-        const map = load(KEY_MINUTES, {});
-        map[id] = text;
-        save(KEY_MINUTES, map);
-        pushNotif('info', 'Minutes saved.');
-        $('#minutesModal').modal('hide');
-        refresh();
-      }
-    }
-
-    viewMinutesBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      const meetings = load(KEY_MEETINGS, []).sort((a,b)=> new Date(b.start)-new Date(a.start));
-      if(meetings.length === 0){ pushNotif('warn','No meetings available yet.'); return; }
-      openMinutes(meetings[0].id);
-    });
-    joinNowBtn.addEventListener('click', function(){
-      const meetings = load(KEY_MEETINGS, []);
-      const live = meetings.find(m=>{
-        const s = parse(m.start), e = addMinutes(s, m.duration);
-        return isNowBetween(s,e);
-      });
-      if(live){ window.location.href = live.join || '#!'; }
-      else{ pushNotif('warn', 'No meeting is live right now.'); }
-    });
-    exportMeetingsBtn.addEventListener('click', function(){
-      const data = JSON.stringify(load(KEY_MEETINGS, []), null, 2);
-      const blob = new Blob([data], {type: 'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'meetings.json'; a.click();
-      URL.revokeObjectURL(url);
-    });
+    
     clearNotifsBtn.addEventListener('click', function(){
       save(KEY_NOTIFS, []);
       renderNotifs();
