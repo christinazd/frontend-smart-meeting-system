@@ -407,7 +407,7 @@ added */
         <form id="loginForm" autocomplete="off" novalidate>
           <!-- Email / Username -->
           <div class="input-wrap" id="wrap-user">
-            <label class="muted">Email or Username</label>
+            <label class="muted">Email </label>
             <input type="text" class="form-control" id="user" placeholder="jane.doe@example.com" required />
             <div class="input-underline"><div class="neon"></div></div>
           </div>
@@ -742,6 +742,35 @@ added */
 <script src="js/guard.js"></script>
 <!-- Include on pages after guard.js -->
 <script src="js/api.js"></script>
+
+<script>
+(function(){
+  const API_BASE = 'http://127.0.0.1:8000/api'; // adjust if backend runs elsewhere
+
+  // forgot password handler
+  document.getElementById('forgotLink').addEventListener('click', async function(e){
+    e.preventDefault();
+    const email = prompt("Enter your account email:");
+    if(!email) return;
+
+    try {
+      const res = await fetch(API_BASE + '/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim() })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert(data.message || "Reset link sent! Check your email.");
+      } else {
+        alert(data.message || "Could not send reset link.");
+      }
+    } catch (err) {
+      alert("Server not reachable.");
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
