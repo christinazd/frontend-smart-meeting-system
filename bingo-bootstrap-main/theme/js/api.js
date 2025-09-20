@@ -58,3 +58,41 @@ export async function apiLogout() {
     clearToken();
   }
 }
+//update
+
+async function apiFetch(path, opts = {}) {
+  const token = getToken();
+  opts.headers = opts.headers || {};
+  // do not override Content-Type for FormData
+  if (!opts.body || !(opts.body instanceof FormData)) {
+    opts.headers['Content-Type'] = 'application/json';
+  }
+  opts.headers['Accept'] = 'application/json';
+  if (token) opts.headers['Authorization'] = `Bearer ${token}`;
+  const res = await fetch(API_BASE + path, opts);
+  // return response and helper methods in callers (so they can read res.status/res.json())
+  return res;
+}
+
+async function apiGet(url) {
+  const token = localStorage.getItem('token');
+  const res = await fetch('http://127.0.0.1:8000/api' + url, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  return res;
+}
+
+// expose globally
+window.apiGet = apiGet;
+
+async function apiPostJson(url, payload) {
+  const token = localStorage.getItem('token');
+  return fetch(url, { method:'POST', headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer ' + token }, body: JSON.stringify(payload) });
+}
+async function apiPostForm(path, formData) {
+  // content-type omitted so browser sets boundary
+  return apiFetch(path, { method: 'POST', body: formData });
+}

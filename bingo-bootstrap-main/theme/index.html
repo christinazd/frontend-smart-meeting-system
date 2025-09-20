@@ -431,7 +431,7 @@ min-width: 320px; max-width: 420px;
       <nav class="navbar navbar-expand-lg navbar-light px-0">
         <a class="navbar-brand logo" href="index.html">
           <img loading="lazy" class="logo-default" src="images/l1.png" alt="logo" height="60" width="60" />
-          
+
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -456,7 +456,7 @@ min-width: 320px; max-width: 420px;
                 <li><a class="dropdown-item" href="mom.html">Minutes of Meeting</a></li>
               </ul>
             </li>
-            
+
             <li class="nav-item" id="logoutBTn">
               <a class="nav-link" href="login.html">Logout</a>
             </li>
@@ -647,7 +647,7 @@ min-width: 320px; max-width: 420px;
 </div>
 
       </div>
-      
+
     </div>
 
     <!-- Schedule Modal -->
@@ -731,9 +731,9 @@ min-width: 320px; max-width: 420px;
     const KEY_NOTIFS   = "sms_notifications";
 
      const dashDateEl         = document.getElementById("dashDate");
-   
-    
-   
+
+
+
     const upcomingListEl     = document.getElementById("upcomingList");
     const upcomingCountEl    = document.getElementById("upcomingCount");
     const notifListEl        = document.getElementById("notifList");
@@ -777,11 +777,11 @@ min-width: 320px; max-width: 420px;
     }
 
     // seed demo data once
-    
-    
 
-    
-     
+
+
+
+
     function renderUpcoming(){
       const meetings = load(KEY_MEETINGS, []);
       const upcoming = meetings
@@ -852,7 +852,7 @@ min-width: 320px; max-width: 420px;
       }).join("");
     }
 
-    
+
     clearNotifsBtn.addEventListener('click', function(){
       save(KEY_NOTIFS, []);
       renderNotifs();
@@ -973,7 +973,7 @@ document.getElementById("logoutBtn").addEventListener("click", function (e) {
 
 
   // Example: fetch current user and show name
- 
+
 (async () => {
   try {
     if (typeof authFetch !== 'function') {
