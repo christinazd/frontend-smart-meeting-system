@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("role", data.user.role);
           }
         }
+        if (data.user.id) {
+          localStorage.setItem("user_id", data.user.id);
+        }
 
         // Also set a session cookie mirror for compatibility & mark loggedIn
         try {
