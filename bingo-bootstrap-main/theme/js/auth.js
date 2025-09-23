@@ -4,11 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   if (!loginForm) return;
 
-  const userInput = document.getElementById("user");       // email input (id="user" in your login.html)
-  const passInput = document.getElementById("password");   // password input (id="password")
+  const userInput = document.getElementById("user"); // email input (id="user" in your login.html)
+  const passInput = document.getElementById("password"); // password input (id="password")
   const loginAlert = document.getElementById("loginAlert");
   const loginBtn = document.getElementById("loginBtn");
   const API_BASE = "http://127.0.0.1:8000/api";
+<<<<<<< HEAD
 
 
   // --- Minimal Forgot Password UX (non-invasive) ---
@@ -38,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 })();
+=======
+>>>>>>> 3bc2bcadb802b28d94263bd487b335f4a2276a1c
 
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -54,10 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch(API_BASE + "/login", {
         method: "POST",
         headers: {
+<<<<<<< HEAD
           "Accept": "application/json",
           "Content-Type": "application/json"
+=======
+          Accept: "application/json",
+          "Content-Type": "application/json",
+>>>>>>> 3bc2bcadb802b28d94263bd487b335f4a2276a1c
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json().catch(() => ({}));
@@ -71,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("role", data.user.role);
           }
         }
+<<<<<<< HEAD
 
         // Also set a session cookie mirror for compatibility & mark loggedIn
 try {
@@ -79,17 +88,47 @@ try {
 } catch (e) { /* ignore cookie failures on restrictive browsers */ }
 localStorage.setItem('loggedIn', 'true');
 
+=======
+        if (data.user.id) {
+          localStorage.setItem("user_id", data.user.id);
+        }
+
+        // Also set a session cookie mirror for compatibility & mark loggedIn
+        try {
+          document.cookie =
+            "sms_token=" + encodeURIComponent(data.token) + "; path=/;";
+          document.cookie =
+            "sms_user=" +
+            encodeURIComponent(JSON.stringify(data.user || {})) +
+            "; path=/;";
+        } catch (e) {
+          /* ignore cookie failures on restrictive browsers */
+        }
+        localStorage.setItem("loggedIn", "true");
+>>>>>>> 3bc2bcadb802b28d94263bd487b335f4a2276a1c
 
         // If role was not present in response for some reason, try to fetch /api/user
         if (!localStorage.getItem("role")) {
           try {
             const r2 = await fetch(API_BASE + "/user", {
+<<<<<<< HEAD
               headers: { "Authorization": "Bearer " + data.token, "Accept": "application/json" }
+=======
+              headers: {
+                Authorization: "Bearer " + data.token,
+                Accept: "application/json",
+              },
+>>>>>>> 3bc2bcadb802b28d94263bd487b335f4a2276a1c
             });
             if (r2.ok) {
               const me = await r2.json();
               if (me && me.role) localStorage.setItem("role", me.role);
+<<<<<<< HEAD
               if (!localStorage.getItem("user")) localStorage.setItem("user", JSON.stringify(me));
+=======
+              if (!localStorage.getItem("user"))
+                localStorage.setItem("user", JSON.stringify(me));
+>>>>>>> 3bc2bcadb802b28d94263bd487b335f4a2276a1c
             }
           } catch (err) {
             // ignore - we'll still redirect to index or admin depending on saved role
@@ -107,7 +146,12 @@ localStorage.setItem('loggedIn', 'true');
 
       // Show server error or message
       if (loginAlert) {
+<<<<<<< HEAD
         loginAlert.textContent = data.message || data.error || "Failed to login.";
+=======
+        loginAlert.textContent =
+          data.message || data.error || "Failed to login.";
+>>>>>>> 3bc2bcadb802b28d94263bd487b335f4a2276a1c
         loginAlert.classList.remove("d-none");
       }
     } catch (err) {
